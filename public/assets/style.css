@@ -12,7 +12,25 @@ body {
   margin-top: 45px;
   color: white;
   background-color: black;
-  font-size: 90px;
+  font-family: 'raleway';
+  font-size: 60px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#settingsTitle {
+  margin-top: 45px;
+/*  margin-bottom: 150px;*/
+  color: white;
+  background-color: black;
+  font-size: 60px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#titleBar {
+  background: black;
+/*  height: 200px;*/
 }
 
 #content {
@@ -21,24 +39,113 @@ body {
 }
 
 .spotify {
-  margin-left: 40%;
+  margin-left: 35%;
 }
 
 #highScore {
   font-size: 50px;
   color: white;
-/*  align-content: center;*/
-/*  position: absolute;*/
-  /*float: center;*/
+  text-align: center;
+  font-family: arial;
+  text-transform: uppercase;
 }
 
-/*.btn {
+#modals {
+  opacity: .8;
+}
+
+#scoresList {
+  background-color: lightgrey;
+}
+
+#items {
+  border-radius: 5px;
+  border-style: solid;
+  font-size: 25px;
+  font-weight: 900;
+  font-family: 'arial';
+  color: black;
+  background-color: lightgrey;
+  height: 52px;
+}
+
+#items:hover {
+  color: #0040ff;
+}
+
+#score {
+  text-align: right;
+  margin-right: 25px;
+  font-size: 25px;
+}
+
+#userImage {
+  margin-right: 25px;
+}
+
+.loginText, .signUpText {
+  margin-left: 109px;
+  color: lightgrey;
+}
+
+.loginFooter {
+  color: lightgrey;
+}
+
+.loginBtn, .signUpBtn {
   border-radius: 96px !important;
-  width: 33vw !important;
-  background-color: blue;
-}*/
+  width: 22vw !important;
+  background-color: #4d94ff;
+}
 
-/*.btn:hover {
-
+.loginBtn:hover, .signUpBtn:hover{
   background-color: #00cc66;
 }
+
+.playerMode {
+  margin-top: 150px;
+}
+
+.playerChoiceBtn, .levelChoiceBtn {
+  font-size: 20px;
+  border-style: solid;
+}
+
+.playerChoiceBtn:hover, .levelChoiceBtn:hover {
+  color: #4d94ff;
+}
+
+/*.well {
+  background-color:'#1a1a1a';
+  max-width: 400px;
+
+}
+*/
+/*#lvlSettingsBox {
+  background:'blue';
+  height: 300;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

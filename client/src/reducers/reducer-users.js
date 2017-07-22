@@ -7,7 +7,7 @@ export default function() {
     },
     { id: 2,
       username: 'Jey',
-      score: 100000000000000000000000000000000,
+      score: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
       image: 'https://www.spgesports.com/wp-content/uploads/2016/11/spg-player.png'
     },
     { username: 'paul',

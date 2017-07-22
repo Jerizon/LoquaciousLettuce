@@ -4,15 +4,17 @@ import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ScoreList from './scoreList.jsx';
+import {Button} from 'react-bootstrap';
 
 class Score extends React.Component {
   render() {
     return (
 
       <div className = 'scorePage'>
-      <div id="title">Tessell8</div>
+      <div id="title">TESSELL8</div>
         <div id="highScore">HIGH SCORE</div>
-        <Link to='/settings'>PLAY AGAIN!</Link>
+        <Button><Link to='/'>PLAY AGAIN!</Link></Button>
+        <a id="logoutBtn" href="/logout" className="btn btn-default btn-sm">Logout</a>
         <br></br>
           <ScoreList key={this.props.users.id}/>
       </div>

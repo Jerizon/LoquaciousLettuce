@@ -9,6 +9,7 @@ import MultiPlayer from '../containers/multiPlayer.jsx';
 import Score from '../containers/score.jsx';
 import {Link, IndexRoute, browserHistory, DefaultRoute} from 'react-router';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Button} from 'react-bootstrap';
 
 
 class App extends React.Component {
@@ -21,8 +22,7 @@ class App extends React.Component {
       <div>
         <Router history={browserHistory}>
           <div>
-            <Route exact path='/' component={Home} />
-            <Route path='/settings' component={Settings} />
+            <Route exact path='/' component={Settings} />
             <Route path='/multiPlayer' component={MultiPlayer} />
             <Route path='/musicSettings' component={MusicSettings} />
             <Route path='/game' component={Game} />

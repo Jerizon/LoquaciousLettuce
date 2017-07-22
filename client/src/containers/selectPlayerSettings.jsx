@@ -14,17 +14,19 @@ class SelectPlayerSettings extends React.Component {
     var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'selectPlayerPage'>
+
         <div className="container">
           <div className="row">
-            <div className="col-sm-12" style={{background: '#1a1a1a', height: 500}}>Game<br></br>
-              <ButtonGroup vertical className="col-sm-12">
-                <Button onClick={()=> {changePlayers(1); changeView('difficulty');} }>Single Player</Button>
-                <Button onClick={()=> {changePlayers(2); changeView('difficulty');} }>MultiPlayer</Button>
-              </ButtonGroup>
+            <div id="titleBar" className="col-sm-8-offset-2" >Game<br></br>
+              <div className="box" style={{background:'#1a1a1a', height: 120}}>
+                <ButtonGroup vertical className="col-sm-12">
+                  <Button className="playerChoiceBtn" onClick={()=> {changePlayers(1); changeView('difficulty');} }>Single Player</Button>
+                  <Button className="playerChoiceBtn" onClick={()=> {changePlayers(2); changeView('difficulty');} }>MultiPlayer</Button>
+                </ButtonGroup>
+              </div>
+
             </div>
           </div>
-
-
         </div>
 
       </div>

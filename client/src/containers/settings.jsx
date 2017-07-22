@@ -13,25 +13,35 @@ class Settings extends React.Component {
     console.log('THIS IS VIEW', this.props.view);
     return (
       <div>
-        <div className="settingsPage">Settings Page</div>
-        {this.props.view === 'players' ?
+        <div id="settingsTitle" className="col-sm-4 col-sm-offset-4">Tessell8</div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
           <div>
-            Player Count
-            <SelectPlayerSettings/>
-          </div>
-        : this.props.view === 'song' ?
-          <div>
-            Music Settings
-            <MusicSettings/>
-          </div>
-        : this.props.view === 'difficulty' ?
-          <div>
-          Level Settings
-            <SelectLevelSettings/>
-          </div>
-        : <div>
-            No View is Selected
-          </div>}
+            <div className="settingsPage">Settings Page</div>
+            {this.props.view === 'players' ?
+              <div>
+                Player Count
+                <SelectPlayerSettings className="playerMode"/>
+              </div>
+            : this.props.view === 'song' ?
+              <div>
+                Music Settings
+                <MusicSettings/>
+              </div>
+            : this.props.view === 'difficulty' ?
+              <div>
+              Level Settings
+                <SelectLevelSettings/>
+              </div>
+            : <div>
+                No View is Selected
+              </div>}
+            </div>
+
       </div>
     );
   }

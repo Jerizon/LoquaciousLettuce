@@ -95,7 +95,7 @@ class MusicSettings extends React.Component {
         <Button onClick={ () => { changeView('difficulty'); } }>Back</Button>
         <Button onClick={ () => { changeView('difficulty'); } }>Waiting for Kevin to kick Spotify's butt. Go Kevin!!!</Button>
         <Button onClick={ () => { changeView('players')} }><Link to='/game'>Play!</Link></Button>
-              <Button onClick={ () => { changeView('players'); } }><Link to='/multiPlayer'>MultiPlayer</Link></Button>
+        <Button onClick={ () => { changeView('players'); } }><Link to='/multiPlayer'>MultiPlayer</Link></Button>
 
       </div>
     );

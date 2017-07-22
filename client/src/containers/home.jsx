@@ -3,10 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-// import PreSignUp from './preSignUp.jsx';
-// import PreLogin from './preLogin.jsx';
-// import SignUp from './SignUp.jsx';
-// import Login from './login.jsx';
+
 import {Modal, Button, ButtonGroup, FieldGroup, Form, FormControl, FormGroup, ControlLabel, Col, Checkbox} from 'react-bootstrap';
 
 class Home extends React.Component {

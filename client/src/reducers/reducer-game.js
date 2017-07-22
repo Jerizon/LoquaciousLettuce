@@ -3,7 +3,7 @@ export default (state = {
   score: 0,
   hit: false,
   ongoing: false,
-  bpm: 95,
+  bpm: 96,
   difficulty: 'intermediate',
   players: 1
 }, action) => {

@@ -2,7 +2,7 @@
 
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/" class="btn btn-default btn-sm">Home page</a>
+        <a href="/" class="btn btn-default btn-sm">Start</a>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
@@ -11,21 +11,21 @@
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-
+                <!-- <h3><span class="fa fa-user"></span> Local</h3> -->
+                <img src="http://cutecatsinhats.com/wp-content/uploads/2016/01/lil-bub-party-hat.jpg"/>
                 <% if (user.email) { %>
                 <p>
                     <strong>display name</strong>: <%= user.display %><br>
-                    <strong>id</strong>: <%= user.id %><br>
+                    <!-- <strong>id</strong>: <%= user.id %><br> -->
                     <strong>email</strong>: <%= user.email %>
                 </p>
 
-                <a href="/unlink/local" class="btn btn-default">Unlink</a>
+<!--                 <a href="/unlink/local" class="btn btn-default">Unlink</a> -->
                 <% } else { %>
                 <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
 
             </div>
-        </div>  
+        </div>
 
 <% include foot.ejs%>

@@ -21,10 +21,18 @@ class ScoreList extends React.Component {
         <div>
 
           <li key={user.id} onClick={() => { this.props.selectUser(user); this.props.showModal({visibility: true, user: user}); } }>
-            <div className="col-sm-8" style={{background:'lightgrey', height: 50}}><img src={user.image} height="45" width="45"/>{user.username}</div>
-            <div className="col-sm-6-offset-4" style={{background:'lightgrey', height: 50}}>{user.score}<br></br></div>
-          </li>
 
+            <div id="items" className="col-sm-6-offset-3">
+            <div id="scoreList" className="col-sm-8">
+              <img id="userImage" src={user.image} height="45" width="45"/>
+                {user.username}
+              </div>
+
+              <div id="score">{user.score}<br></br></div>
+            </div>
+
+
+          </li>
 
         </div>
       );
@@ -40,12 +48,12 @@ class ScoreList extends React.Component {
       <div>
         <ol>
           <div>
-            <Modal style={{opacity: '.9'}} show={this.props.showScoreModal.visibility} onHide={ () => this.props.closeModal({visibility: false, user: {username:'julia'}}) }>
+            <Modal id="modals" show={this.props.showScoreModal.visibility} onHide={ () => this.props.closeModal({visibility: false, user: {username:'julia'}}) }>
               <Modal.Header closeButton>
                 <Modal.Title> {this.props.showScoreModal.user.username} </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <img src={this.props.showScoreModal.user.image} height="200" width="200"/>
+                <img src={this.props.showScoreModal.user.image} opacity=".9" height="200" width="200"/>
                      RANKING:   ROCKSTAR
                 <br></br>
                 USER STATS:
@@ -81,9 +89,14 @@ var mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(ScoreList);
 
 
-   // <Button data-toggle="modal">
-        // <Modal show="true">
-        // <Modal.Header closeButton>
-        //     <Modal.Title>Modal heading</Modal.Title>
-        //   </Modal.Header>
-        // </Modal>
+            // <div id="scoresList" className="col-sm-4-offset-4"><br></br>
+            //   <div>
+            //     <img src={user.image} height="55" width="55"/>
+            //     {user.username}
+            //   </div>
+
+            //     <div className="col-sm-2">
+            //       <div id="score">{user.score}</div>
+            //     </div>
+
+            // </div>
