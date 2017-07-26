@@ -84,3 +84,18 @@ module.exports.update = (req, res) => {
 //       res.sendStatus(404);
 //     });
 // };
+
+////////////////////////////////////////////////////////////////////
+////////////////  TEST FUNCTION FOR DB QUERIES  ////////////////////
+////////////////////////////////////////////////////////////////////
+
+module.exports.testAll = (req, res) => {
+  models.Profile.fetchAll()
+    .then(profiles => {
+      res.status(200).send(profiles);
+    })
+    .catch(err => {
+      // This code indicates an outside service (the database) did not respond in time
+      res.status(503).send(err);
+    });
+};

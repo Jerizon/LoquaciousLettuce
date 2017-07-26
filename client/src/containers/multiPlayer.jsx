@@ -20,6 +20,10 @@ class Multiplayer extends React.Component {
       comboP2: 0,
       hitP1: false,
       hitP2: false,
+      healthP1: 100,
+      healthP2: 100,
+      hitsP1: 0,
+      hitsP2: 0,
       game: false,
       ongoing: false,
       end: false,
@@ -48,9 +52,15 @@ class Multiplayer extends React.Component {
 
   increasescoreP1() {
     this.setState({scoreP1: this.state.scoreP1 + 10 + this.state.comboP1, hitP1: true});
+    if (this.state.healthP1 < 100) {
+      this.setState({healthP1: this.state.healthP1 + 1 + this.state.comboP1});
+    }
   }
   increasescoreP2() {
     this.setState({scoreP2: this.state.scoreP2 + 10 + this.state.comboP2, hitP2: true});
+    if (this.state.healthP2 < 100) {
+      this.setState({healthP2: this.state.healthP2 + 1 + this.state.comboP2});
+    }
   }
 
 
@@ -181,9 +191,9 @@ class Multiplayer extends React.Component {
                   if (this.rows[0].balls.length === 0 || this.rows[0].balls[0].y > 580) {
                     var ball = this.rows[0].balls[0];
                     if (ball.keyBind === 'a' || ball.keyBind === 's' || ball.keyBind === 'd' || ball.keyBind === 'f') {
-                      context.setState({ comboP1: 0});
+                      context.setState({ comboP1: 0, healthP1: context.state.healthP1 - 5});
                     } else if (ball.keyBind === 'j' || ball.keyBind === 'k' || ball.keyBind === 'l' || ball.keyBind === ';') {
-                      context.setState({ comboP2: 0});
+                      context.setState({ comboP2: 0, healthP2: context.state.healthP2 - 5});
                     }
 
                     this.rows.shift();
@@ -214,8 +224,6 @@ class Multiplayer extends React.Component {
 
       function draw() {
 
-
-
         if (context.state.end === false) {
           var upperX = 5;
           var upperY = 5;
@@ -235,6 +243,15 @@ class Multiplayer extends React.Component {
           ctx.font = '40px Arial';
           ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
           ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
+// HEALTH INDICATOR
+          if (context.state.healthP1 > 0) {
+            ctx.fillRect(10, 60, context.state.healthP1 * 4, 25);
+          }
+          if (context.state.healthP2 > 0) {
+            ctx.fillRect(580, 60, context.state.healthP2 * 4, 25);
+          }
+
+//
 
   /*                Player 1 Hit condition            */
           if (context.state.hitP1 === true) {
@@ -304,6 +321,10 @@ class Multiplayer extends React.Component {
 
       setInterval(()=> {
         draw();
+        if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0) {
+           audio.pause();
+           context.setState({end: true});
+         }
       }, 1000 / 30);
 
       var modifier = 1;
@@ -537,11 +558,11 @@ class Multiplayer extends React.Component {
               />
               {
                 this.state.ongoing === false &&
-                <Button alignItems="center" className="btn btn-primary btn-sx" onClick={function() { startSong(); } }> Start Song </Button>
+                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); } }> Start Song </Button>
               }
               {
                 this.state.end === true &&
-                <Button alignItems="center"><Link to='/score'>Score</Link></Button>
+                <Button><Link to='/score'>Score</Link></Button>
               }
               
       </div>
