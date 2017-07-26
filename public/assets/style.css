@@ -55,7 +55,6 @@ body {
   text-align: center;
   font-family: arial;
   text-transform: uppercase;
-<<<<<<< HEAD
 }
 
 #modals {
@@ -189,103 +188,6 @@ body {
 /*  background-color: red;*/
   height: 160px;
 }
-=======
-}
-
-#modals {
-  opacity: .8;
-}
-
-#scoresList {
-  background-color: lightgrey;
-}
-
-#items {
-  border-radius: 5px;
-  border-style: solid;
-  font-size: 25px;
-  font-weight: 900;
-  font-family: 'arial';
-  color: black;
-  background-color: lightgrey;
-  height: 52px;
-}
-
-#items:hover {
-  color: #0040ff;
-}
-
-#score {
-  text-align: right;
-  margin-right: 25px;
-  font-size: 25px;
-}
-
-#userImage {
-  margin-right: 25px;
-}
-
-.loginText, .signUpText {
-  margin-left: 109px;
-  color: lightgrey;
-}
-
-.loginFooter {
-  color: lightgrey;
-}
-
-.loginBtn, .signUpBtn {
-  border-radius: 96px !important;
-  width: 22vw !important;
-  background-color: #4d94ff;
-}
-
-.loginBtn:hover, .signUpBtn:hover{
-  background-color: #00cc66;
-}
-
-.playerMode {
-  margin-top: 150px;
-}
-
-.playerChoiceBtn, .levelChoiceBtn {
-  font-size: 20px;
-  border-style: solid;
-}
-
-.playerChoiceBtn:hover, .levelChoiceBtn:hover {
-  color: #4d94ff;
-}
-
-/*.well {
-  background-color:'#1a1a1a';
-  max-width: 400px;
-
-}
-*/
-/*#lvlSettingsBox {
-  background:'blue';
-  height: 300;
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 9ab050bc9825022919f9e8622473c07969cc1e45
 
 
 

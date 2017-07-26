@@ -52,7 +52,6 @@ class ScoreList extends React.Component {
               <Modal.Header closeButton>
                 <Modal.Title> {this.props.showScoreModal.user.username} RANKING: ROCKSTAR </Modal.Title>
               </Modal.Header>
-<<<<<<< HEAD
               <Modal.Body >
                 <div id="modPic" className="col-sm-4"><img src={this.props.showScoreModal.user.image} height="160" width="160"/></div>
                 <div id="lvl" className="col-sm-6">
@@ -65,17 +64,6 @@ class ScoreList extends React.Component {
                 </div>
                 <div id="scr" className="col-sm-2">highdcores: {this.props.showScoreModal.user.score}</div>
 
-=======
-              <Modal.Body>
-                <img src={this.props.showScoreModal.user.image} opacity=".9" height="200" width="200"/>
-                     RANKING:   ROCKSTAR
-                <br></br>
-                USER STATS:
-                <br></br>
-                HIGH SCORE:
-                <br></br>
-                {this.props.showScoreModal.user.score}
->>>>>>> 9ab050bc9825022919f9e8622473c07969cc1e45
               </Modal.Body>
               <Modal.Footer>
                footer
