@@ -1,80 +1,86 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import keyboardJS from 'keyboardjs';
-import patterns from './patterns.jsx';
-import { Redirect, Link } from 'react-router-dom';
-import ReactAudioPlayer from 'react-audio-player';
-import {Button, ButtonGroup, Navbar, FormGroup, FormControl, Tabs, Tab} from 'react-bootstrap';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {changeSong, getGame} from '../actions/index';
+ import React from 'react';
+ import ReactDOM from 'react-dom';
+ import keyboardJS from 'keyboardjs';
+ import patterns from './patterns.jsx';
+ import { Redirect, Link } from 'react-router-dom';
+ import ReactAudioPlayer from 'react-audio-player';
+ import {Button, ButtonGroup, Navbar, FormGroup, FormControl, Tabs, Tab} from 'react-bootstrap';
+ import {connect} from 'react-redux';
+ import {bindActionCreators} from 'redux';
+ import {changeSong, getGame} from '../actions/index';
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      score: 0,
-      hit: false,
-      game: false,
-      combo: 0,
-      ongoing: false,
-      end: false,
-      song: this.props.game.song,
-      bpm: this.props.game.bpm,
-      difficulty: this.props.game.difficulty,
-      player: this.props.game.difficulty,
-      attemptPresses: 0
-    };
-    this.updateCanvas = this.updateCanvas.bind(this);
+ class Game extends React.Component {
+   constructor(props) {
+     super(props);
+     this.state = {
+       score: 0,
+       hit: false,
+       game: false,
+       health: 100,
+       hits: 0,
+       combo: 0,
+       ongoing: false,
+       end: false,
+       song: this.props.game.song,
+       bpm: this.props.game.bpm,
+       difficulty: this.props.game.difficulty,
+       player: this.props.game.difficulty,
+       attemptPresses: 0
+     };
+     this.updateCanvas = this.updateCanvas.bind(this);
 
-    this.increaseScore = this.increaseScore.bind(this);
+     this.increaseScore = this.increaseScore.bind(this);
 
-    this.increaseAttempt = this.increaseAttempt.bind(this);
-    this.decreaseAttempt = this.decreaseAttempt.bind(this);
-  }
+     this.increaseAttempt = this.increaseAttempt.bind(this);
+     this.decreaseAttempt = this.decreaseAttempt.bind(this);
+   }
 
-  componentDidMount() {
-    console.log('THIS IS THE GAME', this.props.game);
-  }
+   componentDidMount() {
+     console.log('THIS IS THE GAME', this.props.game);
+   }
 
-  handleOptionChange (changeEvent) {
-    this.setState({
-      difficulty: changeEvent.target.value
-    });
-  }
-  increaseScore() {
-    this.setState({score: this.state.score + 10 + this.state.combo, hit: true});
-  }
+   handleOptionChange (changeEvent) {
+     this.setState({
+       difficulty: changeEvent.target.value
+     });
+   }
+   increaseScore() {
+     this.setState({score: this.state.score + 10 + this.state.combo, hit: true, hits: this.state.hits + 1});
+     if (this.state.health < 100) {
+       this.setState({health: this.state.health + 1 + this.state.combo});
+     }
+     console.log(this.state);
+   }
 
-  increaseAttempt() {
-    this.setState({attemptPresses: this.state.attemptPresses + 1});
+   increaseAttempt() {
+     this.setState({attemptPresses: this.state.attemptPresses + 1});
     //console.log(this.state.attemptPresses);
-  }
-  decreaseAttempt() {
-    this.setState({attemptPresses: this.state.attemptPresses - 1});
+   }
+   decreaseAttempt() {
+     this.setState({attemptPresses: this.state.attemptPresses - 1});
     //console.log(this.state.attemptPresses);
-  }
+   }
 
-  startSong() {
-    this.setState({game: true});
+   startSong() {
+     this.setState({game: true});
     //console.log(this.state.game);
-    var audio = ReactDOM.findDOMNode(this.refs.audio);
-    if (this.state.game === true) {
-      if (this.state.ongoing === false) {
+     var audio = ReactDOM.findDOMNode(this.refs.audio);
+     if (this.state.game === true) {
+       if (this.state.ongoing === false) {
         this.updateCanvas();
         this.setState({ongoing: true});
       }
-    }
-  }
+     }
+   }
 
-  updateCanvas() {
-    if (this.state.game === true) {
-      var canvas = this.refs.canvas;
-      var ctx = this.refs.canvas.getContext('2d');
-      var context = this;
-      ListenEvents();
+   updateCanvas() {
+     if (this.state.game === true) {
+       var canvas = this.refs.canvas;
+       var ctx = this.refs.canvas.getContext('2d');
+       var context = this;
+       ListenEvents();
 
-      var makeBall = function (xCor, yCor, color, keyBind) {
+       var makeBall = function (xCor, yCor, color, keyBind) {
         var ball = {
           x: xCor,
           y: yCor,
@@ -94,7 +100,7 @@ class Game extends React.Component {
         return ball;
       };
 
-      var makeRow = function(hexCode) {
+       var makeRow = function(hexCode) {
         var rowArr = [0, 0, 0, 0, ];
         var corArr = ['a', 's', 'd', 'f'];
         for (let i = 0; i < 4; i++) {
@@ -128,7 +134,7 @@ class Game extends React.Component {
         return row;
       };
 
-      var allRows = {
+       var allRows = {
         rows: [],
 
         flashDots: function() {
@@ -155,7 +161,7 @@ class Game extends React.Component {
               if (this.rows[0].balls) {
                 if (this.rows[0].balls) {
                   if (this.rows[0].balls.length === 0 || this.rows[0].balls[0].y > 580) {
-                    context.setState({ combo: 0});
+                    context.setState({ combo: 0, health: context.state.health - 5});
                     this.rows.shift();
                   }
                 }
@@ -165,22 +171,22 @@ class Game extends React.Component {
         }
       };
 
-      var audioCtx = new AudioContext();
-      var audio = ReactDOM.findDOMNode(this.refs.audio);
-      var audioSrc = audioCtx.createMediaElementSource(audio);
-      var analyser = audioCtx.createAnalyser();
+       var audioCtx = new AudioContext();
+       var audio = ReactDOM.findDOMNode(this.refs.audio);
+       var audioSrc = audioCtx.createMediaElementSource(audio);
+       var analyser = audioCtx.createAnalyser();
 
-      audioSrc.connect(analyser);
-      analyser.connect(audioCtx.destination);
-      analyser.fftSize = 256;
-      var bufferLength = analyser.frequencyBinCount;
-      var frequencyData = new Uint8Array(bufferLength);
+       audioSrc.connect(analyser);
+       analyser.connect(audioCtx.destination);
+       analyser.fftSize = 256;
+       var bufferLength = analyser.frequencyBinCount;
+       var frequencyData = new Uint8Array(bufferLength);
 
-      var counter = 0;
-      function draw() {
+       var counter = 0;
+       function draw() {
 
         analyser.getByteFrequencyData(frequencyData);
-        console.log(frequencyData);
+        //console.log(frequencyData);
 
 
         if (context.state.end === false) {
@@ -194,14 +200,17 @@ class Game extends React.Component {
           for (var i = 0; i < bufferLength; i++) {
             barHeight = frequencyData[i];
             ctx.fillStyle = 'rgb(' + (barHeight + 100) + ',50,255)';
-            ctx.fillRect(x, 600 - 2 * barHeight, barWidth, 2 * barHeight)
+            ctx.fillRect(x, 600 - 2 * barHeight, barWidth, 2 * barHeight);
             x += barWidth;
           }
 // ACTUAL GAME GAME STUFF
           ctx.fillStyle = 'white';
           ctx.font = '40px Arial';
           ctx.fillText('Score: ' + context.state.score, 10, 50);
+// HEALTH INDICATOR
+          ctx.fillRect(10, 60, context.state.health * 4, 25);
 
+//
           if (context.state.hit === true) {
             if (counter === 5) {
               context.setState({hit: false});
@@ -239,17 +248,20 @@ class Game extends React.Component {
 
 
       }
-      setTimeout(function() {
+       setTimeout(function() {
         audio.play();
       }, (475 / (4 * (1000 / 30))) * 1000);
-
-
-      setInterval(()=> {
+       setInterval(()=> {
         draw();
+        if (context.state.health <= 0) {
+          audio.pause();
+          context.setState({end: true});
+        }
       }, 1000 / 30);
 
-      var modifier = 1;
-      if (context.state.difficulty === 'super_beginner') {
+
+       var modifier = 1;
+       if (context.state.difficulty === 'super_beginner') {
         modifier = .25;
       } else if (context.state.difficulty === 'beginner') {
         modifier = .5;
@@ -261,12 +273,12 @@ class Game extends React.Component {
         modifier = 4;
       }
 
-      setInterval(()=>{
+       setInterval(()=>{
         allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
       }, Math.floor(60000 / (context.state.bpm * modifier)) );
 
 
-      var checkMove = () => {
+       var checkMove = () => {
         var output = allRows.rows[0].balls.map(function(ball) {
           return (ball.keyBind);
         });
@@ -275,7 +287,7 @@ class Game extends React.Component {
         return output;
       };
 
-      function ListenEvents() {
+       function ListenEvents() {
         var validMove = (keyCodes) =>{
           context.increaseAttempt();
           var moveCheck = checkMove();
@@ -361,26 +373,26 @@ class Game extends React.Component {
         }
         listenToDF();
       }
-      function listenToJEY() {
+       function listenToJEY() {
         keyboardJS.bind('j + e + y', function(e) {
           context.setState({score: context.state.score + 999});
         });
       }
-      listenToJEY();
+       listenToJEY();
 
-    }
-  }
+     }
+   }
 
-  trackEnd() {
-    console.log('The song has ended');
-    this.setState({end: true});
-  }
+   trackEnd() {
+     console.log('The song has ended');
+     this.setState({end: true});
+   }
 
-  render() {
-    var boundEnd = this.trackEnd.bind(this);
-    var startSong = this.startSong.bind(this);
-    var song = this.state.song;
-    return (
+   render() {
+     var boundEnd = this.trackEnd.bind(this);
+     var startSong = this.startSong.bind(this);
+     var song = this.state.song;
+     return (
       <div className= 'text-center'>
         <div>
           <canvas ref="canvas" width={600} height={625}/>
@@ -398,20 +410,20 @@ class Game extends React.Component {
               }
               {
                 this.state.end === true &&
-                <Button className="btn btn-primary btn-sx" alignItems="center"><Link to='/score'>High Scores</Link></Button>
+                <Button className="btn btn-primary btn-sx" ><Link to='/score'>High Scores</Link></Button>
               }
       </div>
-    );
-  }
+     );
+   }
 }
-var mapStateToProps = (state) => {
-  return {
-    game: state.game
-  };
-};
+ var mapStateToProps = (state) => {
+   return {
+     game: state.game
+   };
+ };
 
-var matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({getGame: getGame, changeSong: changeSong}, dispatch);
-};
+ var matchDispatchToProps = (dispatch) => {
+   return bindActionCreators({getGame: getGame, changeSong: changeSong}, dispatch);
+ };
 
-export default connect(mapStateToProps, matchDispatchToProps)(Game);
+ export default connect(mapStateToProps, matchDispatchToProps)(Game);
