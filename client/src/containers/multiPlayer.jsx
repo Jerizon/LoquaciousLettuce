@@ -251,8 +251,16 @@ class Multiplayer extends React.Component {
             ctx.fillRect(580, 60, context.state.healthP2 * 4, 25);
           }
 
-//
-
+// BORDER
+          ctx.fillStyle = 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')';          
+          ctx.fillRect(0, 0, canvas.width / 2, 10);
+          ctx.fillRect(0, 0, 10, canvas.height);
+          ctx.fillRect(0, canvas.height - 10, canvas.width / 2, 10);
+          ctx.fillStyle = 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')';
+          ctx.fillRect(canvas.width - 10, 0, 10, canvas.height);
+          ctx.fillRect(canvas.width / 2, 0, canvas.width / 2, 10);
+          ctx.fillRect(canvas.width / 2, canvas.height - 10, canvas.width / 2, 10);
+          ctx.fillStyle = 'white';
   /*                Player 1 Hit condition            */
           if (context.state.hitP1 === true) {
             if (counterP1 === 5) {

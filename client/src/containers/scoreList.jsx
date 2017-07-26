@@ -92,7 +92,6 @@ var mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(ScoreList);
 
 
-<<<<<<< HEAD
 
                 // <img src={this.props.showScoreModal.user.image} height="200" width="200"/>
                 //      RANKING:   ROCKSTAR
@@ -103,16 +102,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(ScoreList);
                 // HIGH SCORE:
                 // <br></br>
                 // {this.props.showScoreModal.user.score}
-=======
-            // <div id="scoresList" className="col-sm-4-offset-4"><br></br>
-            //   <div>
-            //     <img src={user.image} height="55" width="55"/>
-            //     {user.username}
-            //   </div>
-
-            //     <div className="col-sm-2">
-            //       <div id="score">{user.score}</div>
-            //     </div>
-
-            // </div>
->>>>>>> 9ab050bc9825022919f9e8622473c07969cc1e45
