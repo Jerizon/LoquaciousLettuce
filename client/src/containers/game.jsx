@@ -39,7 +39,6 @@
      console.log('THIS IS THE GAME', this.props.game);
    }
 
-
    increaseScore() {
      this.setState({score: this.state.score + 10 + this.state.combo, hit: true, hits: this.state.hits + 1});
      if (this.state.health < 100) {

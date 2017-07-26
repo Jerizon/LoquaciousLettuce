@@ -16,14 +16,14 @@ module.exports.getAll = (req, res) => {  // [ R ]
 // WHY WERE SOME OF THESE METHODS COMMENTED OUT?
 
 module.exports.create = (req, res) => {  // [ C ]
-  models.Song.forge({ 
-    url: req.params.url,
-    owner: req.params.owner,
-    songname: req.params.songname,
-    bpm: req.params.bpm,
-    key: req.params.highscore,
-    highscore: req.params.highscore,
-    pattern: req.params.pattern,
+  models.Song.forge({
+    url: req.body.url,
+    owner: req.body.owner,
+    songname: req.body.songname,
+    bpm: req.body.bpm,
+    key: req.body.key,
+    highscore: req.body.highscore,
+    pattern: req.body.pattern,
   })
     .save()
     .then(result => {
@@ -35,7 +35,7 @@ module.exports.create = (req, res) => {  // [ C ]
 };
 
 module.exports.getOne = (req, res) => {  // [ R ]
-  models.Song.where({ id: req.params.id }).fetch() // 'params' = SOME NODE THING WHICH WILL AUTO-BE THERE
+  models.Song.where({ id: req.body.id }).fetch() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
     .then(song => {
       if (!song) {
         throw song;
@@ -53,12 +53,12 @@ module.exports.getOne = (req, res) => {  // [ R ]
 // THIS FUNCTION WOULD BE USED TO UPDATE THE HIGH SCORE AND/OR PATTERN ON A PARTICULAR SONG
 
 module.exports.update = (req, res) => {  // [ U ]
-  models.Song.where({ id: req.params.id }).fetch()
+  models.Song.where({ id: req.body.id }).fetch()
     .then(song => {
       if (!song) {
         throw song;
       }
-      return song.save(req.params, { method: 'update' });
+      return song.save(req.body, { method: 'update' });
     })
     .then(() => {
       res.sendStatus(201);
@@ -74,7 +74,7 @@ module.exports.update = (req, res) => {  // [ U ]
 // NOT SURE WHEN WE WOULD USE THIS, BUT IT SHOULD WORK IF WE DO NEED IT
 
 module.exports.deleteOne = (req, res) => {  // [ D ]
-  models.Song.where({ id: req.params.id }).fetch()
+  models.Song.where({ id: req.body.id }).fetch()
     .then(song => {
       if (!song) {
         throw song;
@@ -89,5 +89,57 @@ module.exports.deleteOne = (req, res) => {  // [ D ]
     })
     .catch(() => {
       res.sendStatus(404);
+    });
+};
+
+module.exports.getAllSongsForUser = (req, res) => {  // [ R ]
+  console.log('PARAMS = ', req.params);
+  models.Song.where({ owner: req.params.owner }).fetchAll() // 'params' = SOME NODE THING WHICH WILL AUTO-BE THERE
+    .then(song => {
+      if (!song) {
+        throw song;
+      }
+      res.status(200).send(song);
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
+
+
+////////////////////////////////////////////////////////////////////
+///////////////  TEST FUNCTIONS FOR DB QUERIES  ////////////////////
+////////////////////////////////////////////////////////////////////
+
+module.exports.testAll = (req, res) => {  // [ R ]
+  models.Song.fetchAll()
+    .then(songs => {
+      res.status(200).send(songs);
+    })
+    .catch(err => {
+      // This code indicates an outside service (the database) did not respond in time
+      res.status(503).send(err);
+    });
+};
+
+module.exports.testAdd = (req, res) => {  // [ C ]
+  models.Song.forge({
+    url: req.body.url,
+    owner: req.body.owner,
+    songname: req.body.songname,
+    bpm: req.body.bpm,
+    key: req.body.key,
+    highscore: req.body.highscore,
+    pattern: req.body.pattern,
+  })
+    .save()
+    .then(result => {
+      res.status(201).send(result);
+    })
+    .catch(err => {
+      res.status(500).send(err);
     });
 };
