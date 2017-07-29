@@ -55,7 +55,7 @@ class MusicSettings extends React.Component {
     var youtubeOptions = {
       method: 'GET',
       params: {
-        key: 'AIzaSyC5yIOrzHz53f1ByTgYzP2Yn586TDDb-1Y',
+        key: '',
         q: this.search,
         type: 'video',
         part: 'snippet',
