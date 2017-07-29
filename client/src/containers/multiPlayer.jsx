@@ -571,7 +571,7 @@ class Multiplayer extends React.Component {
               />
               {
                 this.state.ongoing === false &&
-                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); } }> Start Song </Button>
+                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); window.background.pause(); } }> Start Song </Button>
               }
               {
                 this.state.end === true &&

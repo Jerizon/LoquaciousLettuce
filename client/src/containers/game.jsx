@@ -72,10 +72,19 @@
 
    updateCanvas() {
      if (this.state.game === true) {
-       var canvas = this.refs.canvas;
-       var ctx = this.refs.canvas.getContext('2d');
+      //  var backCanvas = this.refs.backcanvas;
+      //  var vCtx = this.refs.backcanvas.getContext('2d');
+      //  var imageObj = new Image();
+      //  imageObj.onload = function() {
+      //    vCtx.drawImage(imageObj, -69, -50);
+      //  };
+      //  imageObj.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
+
        var context = this;
        ListenEvents();
+       var canvas = this.refs.canvas;
+       var ctx = this.refs.canvas.getContext('2d');
+       
 
        var makeBall = function (xCor, yCor, color, keyBind) {
          var ball = {
@@ -144,8 +153,8 @@
                    });
                  } else if (this.rows[0].balls[0].y > 575) {
                    this.rows[0].balls.forEach(function(ball) {
-                    ball.color = 'red';
-                  });
+                     ball.color = 'red';
+                   });
                  }
                }
              }
@@ -261,18 +270,18 @@
        }, 1000 / 30);
        
        var frameCheck = setInterval(()=> {
-        draw();
-        if (context.state.health <= 0) {
-          audio.pause();
+         draw();
+         if (context.state.health <= 0) {
+           audio.pause();
           //console.log(context.state);
-          console.log('----> current user',this.props.currentUser);
-          saveGame(this.props.currentUser.id, context.state);
+           console.log('----> current user', this.props.currentUser);
+           saveGame(this.props.currentUser.id, context.state);
           //getTopTenScores(context.state);
-          context.setState({end: true});
-          clearInterval(frameCheck);
-          draw();
-        }
-      }, 1000 / 30);
+           context.setState({end: true});
+           clearInterval(frameCheck);
+           draw();
+         }
+       }, 1000 / 30);
 
 
        /*
@@ -422,37 +431,33 @@
      var boundEnd = this.trackEnd.bind(this);
      var startSong = this.startSong.bind(this);
      var background = document.getElementById('background');
-     console.log('Audio', window.background);
-    //  if (!!window.background) {
-    //    console.log('Trying to pause');
-    //    window.background.pause();
-    //  }
      if (this.state.songBlob !== null) {
        var songBlob = this.state.songBlob;
      } else {
        var songBlob = `assets/music/${this.state.song}`;
      }
      return (
-      <div className= 'text-center transition-item game'>
-        <div>
-          <button onClick = {this.playMusic.bind(this)}>Button</button>
-          <canvas ref="canvas" width={400} height={625}/>
+      <div className="singlePlayerGame">
+        <div className= 'text-center transition-item game singlePlayerGame'>
+          <div className="singlePlayerGame">
+            <canvas ref="canvas" width={400} height={625}/>
+          </div>
+                <ReactAudioPlayer
+                  src={`${songBlob}`}
+                  autoPlay={false}
+                  controls={false}
+                  ref="audio"
+                  onEnded={function() { boundEnd(); } }
+                />
+                {
+                  this.state.ongoing === false &&
+                  <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); window.background.pause(); } }> Start Song </Button>
+                }
+                {
+                  this.state.end === true &&
+                  <Link to='/score'><Button className="btn btn-primary btn-sx" >High Scores</Button></Link>
+                }
         </div>
-              <ReactAudioPlayer
-                src={`${songBlob}`}
-                autoPlay={false}
-                controls={false}
-                ref="audio"
-                onEnded={function() { boundEnd(); } }
-              />
-              {
-                this.state.ongoing === false &&
-                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); window.background.pause(); } }> Start Song </Button>
-              }
-              {
-                this.state.end === true &&
-                <Button className="btn btn-primary btn-sx" ><Link to='/score'>High Scores</Link></Button>
-              }
       </div>
      );
    }

@@ -13,8 +13,8 @@ class Score extends React.Component {
       <div className = 'scorePage'>
       <div id="title">TESSELL8</div>
         <div id="highScore">HIGH SCORE</div>
-        <Button><Link to='/'>PLAY AGAIN!</Link></Button>
-        <a id="logoutBtn" href="/logout" className="btn btn-default btn-sm">Logout</a>
+        <Link to='/'><Button className="levelChoiceBtn" >PLAY AGAIN!</Button></Link>
+        <Button id="logoutBtn" href="/logout" className="levelChoiceBtn" >Logout</Button>
         <br></br>
           <ScoreList key={this.props.topTenScoresUsers.id}/>
       </div>
