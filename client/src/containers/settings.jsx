@@ -15,7 +15,8 @@ class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      songPlay: true, 
+      songPlay: true,
+      background: null, 
     };
   }
   render() {
@@ -24,7 +25,9 @@ class Settings extends React.Component {
     console.log(this.state.songPlay);
     if (this.state.songPlay === true) {
       background.volume = 0.2;
-      background.play(); 
+      background.id = 'background';
+      background.play();
+      window.background = background; 
       this.setState({songPlay: false});
     }
     return (
@@ -46,12 +49,12 @@ class Settings extends React.Component {
             : this.props.view === 'song' ?
               <div>
                 Music Settings
-                <MusicSettings/>
+                <MusicSettings background={this.state.background}/>
               </div>
             : this.props.view === 'difficulty' ?
               <div>
               Level Settings
-                <SelectLevelSettings/>
+                <SelectLevelSettings background={this.state.background}/>
               </div>
             : <div>
                 No View is Selected

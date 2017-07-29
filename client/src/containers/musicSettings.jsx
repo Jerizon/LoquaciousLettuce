@@ -115,6 +115,8 @@ class MusicSettings extends React.Component {
     var woosh = new Audio("assets/sfx/Woosh.wav");
     woosh.play(); 
     var click = new Audio("assets/sfx/Click.mp3");
+  
+    
     var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'musicSettingsPage transition-item music-setting'>
@@ -148,10 +150,10 @@ class MusicSettings extends React.Component {
             </Tab>
           </Tabs>
         </div>
-        <Button onClick={ () => { changeView('difficulty'); click.play(); } }>Back</Button>
-        <Button onClick={ () => { changeView('difficulty'); click.play(); } }>Waiting for Kevin to kick Spotify's butt. Go Kevin!!!</Button>
-        <Button onClick={ () => { changeView('players'); click.play(); background.pause(); } }><Link to='/game'>Play!</Link></Button>
-        <Button onClick={ () => { changeView('players'); click.play(); background.pause(); } }><Link to='/multiPlayer'>MultiPlayer</Link></Button>
+        <Button onClick={ () => { changeView('difficulty'); } }>Back</Button>
+        <Button onClick={ () => { changeView('difficulty'); } }>Waiting for Kevin to kick Spotify's butt. Go Kevin!!!</Button>
+        <Button onClick={ () => { changeView('players'); } }><Link to='/game'>Play!</Link></Button>
+        <Button onClick={ () => { changeView('players'); } }><Link to='/multiPlayer'>MultiPlayer</Link></Button>
       </div>
     );
   }
