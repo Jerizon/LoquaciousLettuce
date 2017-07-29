@@ -8,9 +8,28 @@ router.route('/')
   .post(GameController.create)
   ;
 
+router.route('/getAllGamesForSongAtDifficulty')
+  .post(GameController.getAllGamesForSongAtDifficulty)
+  ;
+
 router.route('/:id')
-  .get(GameController.getAllForUser)
+  .get(GameController.getOne)
   .delete(GameController.deleteOne)
   ;
+
+router.route('/getAllGamesForUser/:profile_id')
+  .get(GameController.getAllGamesForUser)
+  ;
+
+// Highest score by one player on one song on any Difficulty
+router.route('/getHighscoreForUserForSong')
+  .post(GameController.getHighscoreForUserForSong)
+  ;
+
+// Highest score by one player on one Difficulty on any song
+router.route('/getHighscoreForUserForSongForDifficulty')
+  .post(GameController.getHighscoreForUserForSongForDifficulty)
+  ;
+
 
 module.exports = router;

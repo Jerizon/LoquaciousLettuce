@@ -45,9 +45,8 @@ app.get('/tokenhere', (req, res) => {
 // })
 
 app.use('/', routes.auth);
-// app.use('/', routes.test);
+app.use('/', routes.test);
 app.use('/api', routes.api);
-//app.use('/api/users', routes.users);
 app.use('/api/profiles', routes.profiles);
 app.use('/api/songs', routes.songs);
 app.use('/api/games', routes.games);

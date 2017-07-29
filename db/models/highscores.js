@@ -11,6 +11,9 @@ const Highscore = db.Model.extend({
   games: function() {
     return this.hasOne('Game');
   },
+  games: function() {
+    return this.hasOne('difficulty');
+  },
 });
 
 module.exports = db.model('Highscore', Highscore);

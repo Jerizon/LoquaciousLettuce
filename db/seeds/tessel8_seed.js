@@ -1,7 +1,7 @@
 const models = require('../models');
 
 const dummySongData = {
-  owner: [1, 2, 3, 4, 5, 7, 7, 7, 9, 2, ],
+  profile_id: [1, 2, 3, 4, 5, 7, 7, 7, 9, 2, ],
   url: ['Close.mp3', 'Def.mp3', 'Face.mp3', 'Close.mp3', 'Def.mp3', 'Face.mp3', 'Close.mp3', 'Def.mp3', 'Face.mp3', 'Close.mp3', ],
   songname: ['Close', 'Def', 'Face', 'The Lay Of Luthien', 'The Fall Of Beren', 'All Small Beasts Should Have Bows In Their Tails', 'The Green Dragon', 'Maldoror Is Ded Ded Ded', 'Chewing On Shadows', 'As Above So Below'],
   bpm: [120, 123, 100, 134, 90, 96, 111, 118.6, 120.2, 128.0, ],
@@ -14,7 +14,7 @@ const dummyGameData = {
   profile_id: [1, 2, 3, 3, 3, 6, 8, 8, 9, 10, ],
   song_id: [7, 7, 7, 7, 5, 2, 9, 8, 7, 1, ],
   score: [2660, 1990, 2100, 2280, 2760, 3560, 2450, 3000, 2660, 3410, ],
-  difficultylevel: [4, 3, 2, 3, 3, 2, 5, 1, 2, 3, ],
+  difficulty: [4, 3, 2, 3, 3, 2, 5, 1, 2, 3, ],
 };
 
 const dummyHighscoreData = {
@@ -22,13 +22,14 @@ const dummyHighscoreData = {
   song_id: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ],
   game_id: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, ],
   highscore: [3410, 3560, 3770, 2980, 2760, 3110, 2660, 3000, 2450, 3990, ],
+  difficulty: [1, 3, 5, 4, 2, 3, 3, 3, 4, 1, ],
 };
 
 // DEFINE FUNCTIONS FOR INSERTING SEED DATA (PROFILES ARE HANDLED SEPARATELY)
 let createSongs = (knex, i) => {
   return knex('songs').insert({
 //    id: 1,
-    owner: dummySongData.owner[i],
+    profile_id: dummySongData.profile_id[i],
     url: dummySongData.url[i],
     songname: dummySongData.songname[i],
     bpm: dummySongData.bpm[i],
@@ -44,7 +45,7 @@ let createGames = (knex, i) => {
     profile_id: dummyGameData.profile_id[i],
     song_id: dummyGameData.song_id[i],
     score: dummyGameData.score[i],
-    difficultylevel: dummyGameData.difficultylevel[i],
+    difficulty: dummyGameData.difficulty[i],
   });
 };
 
@@ -55,6 +56,7 @@ let createHighscores = (knex, i) => {
     song_id: dummyHighscoreData.song_id[i],
     game_id: dummyHighscoreData.game_id[i],
     highscore: dummyHighscoreData.highscore[i],
+    difficulty: dummyHighscoreData.difficulty[i],
   });
 };
 
