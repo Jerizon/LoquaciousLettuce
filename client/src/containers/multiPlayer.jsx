@@ -32,7 +32,8 @@ class Multiplayer extends React.Component {
       difficulty: this.props.game.difficulty,
       //player: this.props.game.difficulty,
       attemptPressesP1: 0,
-      attemptPressesP2: 0
+      attemptPressesP2: 0,
+      songBlob: this.props.game.songBlob
     };
     this.updateCanvas = this.updateCanvas.bind(this);
 
@@ -330,9 +331,9 @@ class Multiplayer extends React.Component {
       setInterval(()=> {
         draw();
         if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0) {
-           audio.pause();
-           context.setState({end: true});
-         }
+          audio.pause();
+          context.setState({end: true});
+        }
       }, 1000 / 30);
 
       var modifier = 1;
@@ -550,7 +551,11 @@ class Multiplayer extends React.Component {
   render() {
     var boundEnd = this.trackEnd.bind(this);
     var startSong = this.startSong.bind(this);
-    var song = this.state.song;
+    if (this.state.songBlob !== null) {
+      var songBlob = this.state.songBlob;
+    } else {
+      var songBlob = `assets/music/${this.state.song}`;
+    }
     console.log('OBJECT', this.state);
     return (
       <div className= 'multiplayer text-center'>
@@ -558,7 +563,7 @@ class Multiplayer extends React.Component {
           <canvas ref="canvas" width={1000} height={625}/>
         </div>
               <ReactAudioPlayer
-                src={`assets/music/${song}`}
+                src={`${songBlob}`}
                 autoPlay={false}
                 controls={false}
                 ref="audio"
