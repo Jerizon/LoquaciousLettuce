@@ -121,7 +121,14 @@ class MusicSettings extends React.Component {
     return (
       <div className = 'musicSettingsPage transition-item music-setting'>
       Select Your Music<br></br>
-      <Button onClick = {this.youtubeSearch.bind(this)}>HEHLLO</Button>
+      {
+        this.props.game.players === 1 &&
+        <Link to='/game'><Button className="levelChoiceBtn" onClick = {()=> { changeView('players'); this.youtubeSearch.bind(this); } }>Play!</Button></Link>
+      }
+      {
+        this.props.game.players === 2 &&
+        <Link to='/multiPlayer'><Button className="levelChoiceBtn" onClick={()=> { changeView('players'); this.youtubeSearch.bind(this); } }>Play!</Button></Link>
+      }
         <div id="content">
           <input type="file" id="music" accept="audio/*" />
         </div>
@@ -150,10 +157,7 @@ class MusicSettings extends React.Component {
             </Tab>
           </Tabs>
         </div>
-        <Button onClick={ () => { changeView('difficulty'); } }>Back</Button>
-        <Button onClick={ () => { changeView('difficulty'); } }>Waiting for Kevin to kick Spotify's butt. Go Kevin!!!</Button>
-        <Button onClick={ () => { changeView('players'); } }><Link to='/game'>Play!</Link></Button>
-        <Button onClick={ () => { changeView('players'); } }><Link to='/multiPlayer'>MultiPlayer</Link></Button>
+        <Button className="levelChoiceBtn" onClick={ () => { changeView('difficulty'); } }>Back</Button>
       </div>
     );
   }
@@ -162,7 +166,8 @@ class MusicSettings extends React.Component {
 var mapStateToProps = (state) => {
   return {
     music: state.music,
-    youtube: state.youtube
+    youtube: state.youtube,
+    game: state.game,
   };
 };
 

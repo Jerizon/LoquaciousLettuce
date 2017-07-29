@@ -6,6 +6,7 @@ h1 {
 
 body {
   background-color: black;
+  background-image: url("https://www.pexels.com/photo/sky-space-milky-way-stars-110854/");
 }
 
 .youtubeform {
@@ -293,7 +294,6 @@ body {
   box-sizing: border-box;
   padding: 20px;
   height: 100vh;
-  background-color: black;
   transition: transform 0.5s, opacity 0.5s;
 
   &.transition-appear {
@@ -320,7 +320,6 @@ body {
   box-sizing: border-box;
   padding: 20px;
   height: 100vh;
-  background-color: black;
   transition: transform 0.5s, opacity 0.5s;
   transform: translate3d(0, 0, 0);
 
@@ -344,3 +343,7 @@ body {
   }
 }
 
+/*           Jey's Styling            */
+.singlePlayerGame {
+  background-image: url("https://www.pexels.com/photo/sky-space-milky-way-stars-110854/");
+}
