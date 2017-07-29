@@ -19,6 +19,11 @@ class Settings extends React.Component {
       background: null, 
     };
   }
+
+  changeSongState() {
+    this.setState({songPlay: false});
+  }
+
   render() {
     console.log('THIS IS VIEW', this.props.view);
     var background = new Audio('assets/sfx/background.mp3');
@@ -26,9 +31,11 @@ class Settings extends React.Component {
     if (this.state.songPlay === true) {
       background.volume = 0.2;
       background.id = 'background';
-      background.play();
-      window.background = background; 
-      this.setState({songPlay: false});
+      
+      window.background = background;
+      background.play(); 
+      
+      this.changeSongState();
     }
     return (
       <div>

@@ -20,9 +20,9 @@ class ScoreList extends React.Component {
     return sorted.map((user, index) => {
       // console.log(user.id);
       return (
-        <div >
+        <div key={index} >
 
-          <li key={user.id.toString()} onClick={() => { this.props.selectUser(user); this.props.showModal({visibility: true, user: user}); } }>
+          <li onClick={() => { this.props.selectUser(user); this.props.showModal({visibility: true, user: user}); } }>
 
               <div id="items" className="col-sm-6-offset-3">
               <div id="scoreList" className="col-sm-8">

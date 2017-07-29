@@ -25,12 +25,9 @@ class SelectLevelSettings extends React.Component {
                 <Button className="levelChoiceBtn" onClick={()=> {changeDiff('intermediate'); changeView('song'); } }>Intermediate</Button>
                 <Button className="levelChoiceBtn" onClick={()=> {changeDiff('advanced'); changeView('song'); } }>Advanced</Button>
                 <Button className="levelChoiceBtn" onClick={()=> {changeDiff('rockstar'); changeView('song'); } }>RockStar</Button>
-<<<<<<< HEAD
               </ButtonGroup>
               <ButtonGroup className="col-sm-3">
                 <Button className="levelChoiceBtn" onClick={()=> {changeView('players');}}>Back</Button>
-=======
->>>>>>> master
               </ButtonGroup>
             </div>
           </div>
