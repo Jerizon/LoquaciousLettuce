@@ -28,5 +28,9 @@ router.route('/testh')
   .get(HighscoreController.testAll)
   .post(HighscoreController.testAdd)
   ;
-  
+
+router.route('/testqb')
+  .get(SongController.testqb)
+  ;
+
 module.exports = router;

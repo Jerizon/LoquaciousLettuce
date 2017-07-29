@@ -9,10 +9,19 @@ router.route('/')
   ;
 
 router.route('/:id')
-  .get(HighscoreController.getAllForUser)
   .get(HighscoreController.getForUserBySong)
   .get(HighscoreController.getAllForUserByLevel)
   .delete(HighscoreController.deleteOne)
   ;
+
+router.route('/getAllHighscoresForUser/:profile_id')
+  .get(HighscoreController.getAllHighscoresForUser)
+  ;
+
+/* // MOVED THIS FUNCTION INTO THE GAMES CONTROLLER INSTEAD
+router.route('/getHighscore_OnePlayer_OneSong_AnyDifficulty')
+  .get(HighscoreController.getHighscore_OnePlayer_OneSong_AnyDifficulty)
+  ;
+*/
 
 module.exports = router;

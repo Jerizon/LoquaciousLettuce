@@ -9,12 +9,13 @@ exports.up = function(knex, Promise) {
       table.integer('song_id').references('songs.id').onDelete('CASCADE');       // BASIC IDEA: USING 'CASCADE' CAUSES CHILD RECORDS TO ALSO BE DELETED WHEN A PARENT RECORD IS DELETED.
       table.integer('game_id').references('games.id').onDelete('CASCADE');       // BASIC IDEA: USING 'CASCADE' CAUSES CHILD RECORDS TO ALSO BE DELETED WHEN A PARENT RECORD IS DELETED.
       table.integer('highscore');
+      table.integer('difficulty');
     }),
 
 // SONGS TABLE:
     knex.schema.createTableIfNotExists('songs', function(table) {
       table.increments('id').unsigned().primary();
-      table.integer('owner');
+      table.integer('profile_id').references('profiles.id').onDelete('CASCADE');
       table.string('url');
       table.string('songname');
       table.float('bpm', 3);
@@ -28,7 +29,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').unsigned().primary();
       table.integer('profile_id').references('profiles.id').onDelete('CASCADE'); // 'CASCADE' INFOZ: https://www.codeproject.com/Articles/620086/CASCADE-in-SQL-Server-with-example
       table.integer('song_id').references('songs.id').onDelete('CASCADE');       // BASIC IDEA: USING 'CASCADE' CAUSES CHILD RECORDS TO ALSO BE DELETED WHEN A PARENT RECORD IS DELETED.
-      table.integer('difficultylevel');
+      table.integer('difficulty');
       table.integer('score');
     }),
 

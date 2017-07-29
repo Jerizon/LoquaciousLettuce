@@ -8,7 +8,7 @@ const Profile = db.Model.extend({
   highscores: function() {
     return this.hasMany('Highscore');
   },
-  highscores: function() {
+  songs: function() {
     return this.hasMany('Song');
   },
   games: function() {

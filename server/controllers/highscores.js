@@ -21,6 +21,7 @@ module.exports.create = (req, res) => {  // [ C ]
     highscore: req.body.highscore,
     song_id: req.body.song_id,
     game_id: req.body.game_id,
+    difficulty: req.body.difficulty,
   })
     .save()
     .then(result => {
@@ -31,8 +32,8 @@ module.exports.create = (req, res) => {  // [ C ]
     });
 };
 
-module.exports.getAllForUser = (req, res) => {  // [ R ]
-  models.Highscore.where({ profile_id: req.body.profile_id }).fetch() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
+module.exports.getAllHighscoresForUser = (req, res) => {  // [ R ]
+  models.Highscore.where({ profile_id: req.params.profile_id }).fetchAll() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
     .then(highscore => {
       if (!highscore) {
         throw highscore;
@@ -46,6 +47,23 @@ module.exports.getAllForUser = (req, res) => {  // [ R ]
       res.sendStatus(404);
     });
 };
+/* // MOVED THIS FUNCTION INTO THE GAMES CONTROLLER INSTEAD
+module.exports.getHighscore_OnePlayer_OneSong_AnyDifficulty = (req, res) => {  // [ R ]
+  models.Highscore.where({ profile_id: req.body.profile_id, song_id: req.body.song_id, difficulty: req.body.difficulty }).fetch() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
+    .then(highscore => {
+      if (!highscore) {
+        throw highscore;
+      }
+      res.status(200).send(highscore);
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
+*/
 
 module.exports.getForUserBySong = (req, res) => {  // [ R ]
   models.Highscore.where({ profile_id: req.body.profile_id, song_id: req.body.song_id} ).fetch() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
@@ -64,7 +82,7 @@ module.exports.getForUserBySong = (req, res) => {  // [ R ]
 };
 
 module.exports.getAllForUserByLevel = (req, res) => {  // [ R ]
-  models.Highscore.where({ profile_id: req.body.profile_id, difficultylevel: req.body.difficultylevel} ).fetch() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
+  models.Highscore.where({ profile_id: req.body.profile_id, difficulty: req.body.difficulty} ).fetch() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
     .then(highscore => {
       if (!highscore) {
         throw highscore;

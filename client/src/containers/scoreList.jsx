@@ -92,4 +92,3 @@ var mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScoreList);
-
