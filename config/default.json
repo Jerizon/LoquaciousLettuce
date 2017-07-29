@@ -3,8 +3,8 @@
     "client": "postgresql",
     "connection": {
       "database": "thesis",
-      "user": "",
-      "password": "", // IF THIS IS 'chon', SORRY. THAT IS FOR MY MACHINE ONLY AND I APPARENTLY FORGOT TO CHANGE IT BACK BEFORE PUSHING. IT WAS 'postgres' IN THE STARTER REPO, AND 'password' WHEN I GOT Y'ALL'S CHANGES ON 07/19.
+      "user": "postgres",
+      "password": "password", // IF THIS IS 'chon', SORRY. THAT IS FOR MY MACHINE ONLY AND I APPARENTLY FORGOT TO CHANGE IT BACK BEFORE PUSHING. IT WAS 'postgres' IN THE STARTER REPO, AND 'password' WHEN I GOT Y'ALL'S CHANGES ON 07/19.
       "host": "localhost",
       "port": 5432,
       "charset" : "utf8"

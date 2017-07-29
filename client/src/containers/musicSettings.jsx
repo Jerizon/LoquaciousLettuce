@@ -9,6 +9,8 @@ import axios from 'axios';
 import MusicTrackList from './MusicTrackList.jsx';
 import MusicTrackListLib from './MusicTrackListLib.jsx';
 import {getTracks, getYoutube} from '../actions/index';
+import PageTransition from 'react-router-page-transition';
+
 
 class MusicSettings extends React.Component {
   constructor(props) {
@@ -112,7 +114,7 @@ class MusicSettings extends React.Component {
   render() {
     var changeView = this.props.changeView.bind(this);
     return (
-      <div className = 'musicSettingsPage'>
+      <div className = 'musicSettingsPage transition-item music-setting'>
       Select Your Music<br></br>
       <Button onClick = {this.youtubeSearch.bind(this)}>HEHLLO</Button>
         <div id="content">

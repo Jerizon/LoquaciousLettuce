@@ -9,6 +9,7 @@ import MusicSettings from './musicSettings.jsx';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import {getCurrentUser} from '../actions/index';
 import {getActiveProfile} from '../actions/index';
+import PageTransition from 'react-router-page-transition';
 
 class Settings extends React.Component {
 
@@ -44,7 +45,6 @@ class Settings extends React.Component {
                 No View is Selected
               </div>}
             </div>
-
       </div>
     );
   }

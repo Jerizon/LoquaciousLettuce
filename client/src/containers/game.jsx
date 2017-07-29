@@ -428,7 +428,7 @@
        var songBlob = `assets/music/${this.state.song}`;
      }
      return (
-      <div className= 'text-center'>
+      <div className= 'text-center transition-item game'>
         <div>
           <button onClick = {this.playMusic.bind(this)}>Button</button>
           <canvas ref="canvas" width={400} height={625}/>

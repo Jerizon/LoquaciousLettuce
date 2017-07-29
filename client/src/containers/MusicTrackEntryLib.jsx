@@ -16,7 +16,10 @@ class MusicTrackListEntry extends React.Component {
   }
 
   songChange() {
-    var item = this.props.item.mp3;
+    var item = {
+      mp3: this.props.item.mp3,
+      bpm: this.props.item.BPM
+    };
     this.props.choose(item);
   }
 
