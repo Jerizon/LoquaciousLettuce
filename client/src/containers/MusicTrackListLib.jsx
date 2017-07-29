@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import MusicTrackEntryLib from './MusicTrackEntryLib.jsx';
 import {bindActionCreators} from 'redux';
-import {changeSong} from '../actions/index';
+import {changeSong, getBPM} from '../actions/index';
 
 class MusicTrackListLib extends React.Component {
   constructor(props) {
@@ -15,7 +15,8 @@ class MusicTrackListLib extends React.Component {
 
   chooseSong(item) {
     console.log('clicked', item);
-    this.props.changeSong(item);
+    this.props.changeSong(item.mp3);
+    this.props.getBPM(item.bpm);
   }
 
   render() {
@@ -42,7 +43,7 @@ var mapStateToProps = (state) => {
 };
 
 var matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({changeSong: changeSong}, dispatch);
+  return bindActionCreators({changeSong: changeSong, getBPM: getBPM}, dispatch);
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(MusicTrackListLib);

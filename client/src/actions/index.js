@@ -157,6 +157,14 @@ export const changeDifficulty = (difficulty) => {
   };
 };
 
+export const getBPM = (bpm) => {
+  console.log('heres the bpm', bpm);
+  return {
+    type: 'CHANGE_BPM',
+    payload: bpm
+  };
+};
+
 export const changePlayers = (playerCount) => {
   console.log('playerCount', playerCount);
   return {

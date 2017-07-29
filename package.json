@@ -50,6 +50,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-router-page-transition": "^3.0.2",
     "react-sound": "^0.6.2",
     "redis": "^2.7.1",
     "redux": "^3.7.2",
