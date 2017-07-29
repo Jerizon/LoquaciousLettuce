@@ -10,6 +10,9 @@ import {selectMode} from '../actions/index';
 
 class SelectPlayerSettings extends React.Component {
   render() {
+    var woosh = new Audio("assets/sfx/Woosh.wav");
+    woosh.play(); 
+    var click = new Audio("assets/sfx/Click.mp3"); 
     var changePlayers = this.props.changePlayers.bind(this);
     var changeView = this.props.changeView.bind(this);
     return (
@@ -20,8 +23,8 @@ class SelectPlayerSettings extends React.Component {
             <div id="titleBar" className="col-sm-8-offset-2" >Game<br></br>
               <div className="box" style={{background:'#1a1a1a', height: 120}}>
                 <ButtonGroup vertical className="col-sm-12">
-                  <Button className="playerChoiceBtn" onClick={()=> {changePlayers(1); changeView('difficulty');} }>Single Player</Button>
-                  <Button className="playerChoiceBtn" onClick={()=> {changePlayers(2); changeView('difficulty');} }>MultiPlayer</Button>
+                  <Button className="playerChoiceBtn" onClick={()=> {changePlayers(1); changeView('difficulty'); } }>Single Player</Button>
+                  <Button className="playerChoiceBtn" onClick={()=> {changePlayers(2); changeView('difficulty'); } }>MultiPlayer</Button>
                 </ButtonGroup>
               </div>
 

@@ -12,9 +12,24 @@ import {getActiveProfile} from '../actions/index';
 import PageTransition from 'react-router-page-transition';
 
 class Settings extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      songPlay: true,
+      background: null, 
+    };
+  }
   render() {
     console.log('THIS IS VIEW', this.props.view);
+    var background = new Audio('assets/sfx/background.mp3');
+    console.log(this.state.songPlay);
+    if (this.state.songPlay === true) {
+      background.volume = 0.2;
+      background.id = 'background';
+      background.play();
+      window.background = background; 
+      this.setState({songPlay: false});
+    }
     return (
       <div>
         <div id="settingsTitle" className="col-sm-4 col-sm-offset-4">Tessell8</div>
@@ -34,12 +49,12 @@ class Settings extends React.Component {
             : this.props.view === 'song' ?
               <div>
                 Music Settings
-                <MusicSettings/>
+                <MusicSettings background={this.state.background}/>
               </div>
             : this.props.view === 'difficulty' ?
               <div>
               Level Settings
-                <SelectLevelSettings/>
+                <SelectLevelSettings background={this.state.background}/>
               </div>
             : <div>
                 No View is Selected

@@ -421,8 +421,13 @@
    render() {
      var boundEnd = this.trackEnd.bind(this);
      var startSong = this.startSong.bind(this);
-     var song = this.state.song;
-     if (this.state.songBlob !== null){
+     var background = document.getElementById('background');
+     console.log('Audio', window.background);
+    //  if (!!window.background) {
+    //    console.log('Trying to pause');
+    //    window.background.pause();
+    //  }
+     if (this.state.songBlob !== null) {
        var songBlob = this.state.songBlob;
      } else {
        var songBlob = `assets/music/${this.state.song}`;
@@ -442,7 +447,7 @@
               />
               {
                 this.state.ongoing === false &&
-                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); } }> Start Song </Button>
+                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); window.background.pause(); } }> Start Song </Button>
               }
               {
                 this.state.end === true &&

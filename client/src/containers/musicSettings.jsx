@@ -112,6 +112,11 @@ class MusicSettings extends React.Component {
   }
 
   render() {
+    var woosh = new Audio("assets/sfx/Woosh.wav");
+    woosh.play(); 
+    var click = new Audio("assets/sfx/Click.mp3");
+  
+    
     var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'musicSettingsPage transition-item music-setting'>
