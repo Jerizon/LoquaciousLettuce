@@ -431,7 +431,6 @@
      var boundEnd = this.trackEnd.bind(this);
      var startSong = this.startSong.bind(this);
      var background = document.getElementById('background');
-
      if (this.state.songBlob !== null) {
        var songBlob = this.state.songBlob;
      } else {
