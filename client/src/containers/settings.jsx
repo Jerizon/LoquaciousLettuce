@@ -11,9 +11,21 @@ import {getCurrentUser} from '../actions/index';
 import {getActiveProfile} from '../actions/index';
 
 class Settings extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      songPlay: true, 
+    };
+  }
   render() {
     console.log('THIS IS VIEW', this.props.view);
+    var background = new Audio('assets/sfx/background.mp3');
+    console.log(this.state.songPlay);
+    if (this.state.songPlay === true) {
+      background.volume = 0.2;
+      background.play(); 
+      this.setState({songPlay: false});
+    }
     return (
       <div>
         <div id="settingsTitle" className="col-sm-4 col-sm-offset-4">Tessell8</div>
