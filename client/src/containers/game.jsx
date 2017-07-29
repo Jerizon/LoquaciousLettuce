@@ -26,7 +26,8 @@
        bpm: this.props.game.bpm,
        difficulty: this.props.game.difficulty,
        player: this.props.game.difficulty,
-       attemptPresses: 0
+       attemptPresses: 0,
+       songBlob: this.props.game.songBlob
      };
      this.updateCanvas = this.updateCanvas.bind(this);
 
@@ -421,6 +422,11 @@
      var boundEnd = this.trackEnd.bind(this);
      var startSong = this.startSong.bind(this);
      var song = this.state.song;
+     if (this.state.songBlob !== null){
+       var songBlob = this.state.songBlob;
+     } else {
+       var songBlob = `assets/music/${this.state.song}`;
+     }
      return (
       <div className= 'text-center'>
         <div>
@@ -428,7 +434,7 @@
           <canvas ref="canvas" width={400} height={625}/>
         </div>
               <ReactAudioPlayer
-                src={`assets/music/${song}`}
+                src={`${songBlob}`}
                 autoPlay={false}
                 controls={false}
                 ref="audio"

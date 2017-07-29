@@ -140,6 +140,13 @@ export const changeSong = (song) => {
   };
 };
 
+export const changeBlob = (blob) => {
+  console.log('blob', blob);
+  return {
+    type: 'CHANGE_BLOB',
+    payload: blob
+  };
+};
 //--------------------------------GAME--------------------------------//
 
 export const changeDifficulty = (difficulty) => {

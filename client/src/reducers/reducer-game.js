@@ -5,7 +5,8 @@ export default (state = {
   ongoing: false,
   bpm: 96,
   difficulty: 'intermediate',
-  players: 1
+  players: 1,
+  songBlob: null
 }, action) => {
   switch (action.type) {
   case 'GET_GAME' : {
@@ -25,6 +26,10 @@ export default (state = {
   }
   case 'CHANGE_PLAYERS' : {
     state.players = action.payload;
+    break;
+  }
+  case 'CHANGE_BLOB' : {
+    state.songBlob = action.payload;
     break;
   }
   }

@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {changeView, changeSong} from '../actions/index.js';
+import {changeView, changeSong, changeBlob} from '../actions/index.js';
 import {Button, ButtonGroup, Navbar, FormGroup, FormControl, Tabs, Tab} from 'react-bootstrap';
 import axios from 'axios';
 import MusicTrackList from './MusicTrackList.jsx';
@@ -55,7 +55,7 @@ class MusicSettings extends React.Component {
     var youtubeOptions = {
       method: 'GET',
       params: {
-        key: '',
+        key: 'AIzaSyC5yIOrzHz53f1ByTgYzP2Yn586TDDb-1Y',
         q: this.search,
         type: 'video',
         part: 'snippet',
@@ -101,9 +101,9 @@ class MusicSettings extends React.Component {
     file.onchange = function() {
       var files = this.files;
       console.log('SONG BLOB HERE', URL.createObjectURL(files[0]));
-      var sound = new Audio(URL.createObjectURL(files[0]));
-      context.props.changeSong(URL.createObjectURL(files[0]));
-      sound.play();
+      //var sound = new Audio(URL.createObjectURL(files[0]));
+      context.props.changeBlob(URL.createObjectURL(files[0]));
+      //sound.play();
     };
     file.onchange();
     // audio.
@@ -160,7 +160,7 @@ var mapStateToProps = (state) => {
 };
 
 var matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({changeView: changeView, getTracks: getTracks, getYoutube: getYoutube, changeSong: changeSong}, dispatch);
+  return bindActionCreators({changeView: changeView, getTracks: getTracks, getYoutube: getYoutube, changeSong: changeSong, changeBlob: changeBlob}, dispatch);
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);
