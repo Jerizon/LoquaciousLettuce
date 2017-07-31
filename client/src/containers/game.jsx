@@ -29,6 +29,7 @@
        attemptPresses: 0,
        songBlob: this.props.game.songBlob,
        exclamation: null,
+       exclamationChange: false
      };
      this.updateCanvas = this.updateCanvas.bind(this);
 
@@ -205,8 +206,10 @@
            }
 // ACTUAL GAME GAME STUFF
            ctx.fillStyle = 'white';
-           ctx.font = '40px Arial';
+           ctx.font = '30px Arial';
            ctx.fillText('Score: ' + context.state.score, 10, 50);
+           ctx.fillText('Combo: ' + context.state.combo, 190, 50);
+
 // HEALTH INDICATOR
            ctx.fillRect(10, 60, context.state.health * 4, 25);
 //
@@ -227,6 +230,10 @@
            }
 // EXCLAMATIONS!        
            if (context.state.exclamation !== null) {
+             if (context.state.exclamationChange === true) {
+               exclamationCounter = 1;
+               context.setState({exclamationChange: false});
+             }
              ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounter + ')';
              ctx.fillText(`${context.state.exclamation}`, 50, 150);
              exclamationCounter -= .05;
@@ -266,15 +273,15 @@
        }
        audio.play();
        var drawLoop = setInterval(()=> {
-         draw();
-         if (context.state.health <= 0) {
-           audio.pause();
-           context.setState({end: true});
-           clearInterval(frameCheck);
-           clearInterval(drawLoop);
-           clearInterval(generateTarget);
-           draw();
-         }
+        //  draw();
+        //  if (context.state.health <= 0) {
+        //    audio.pause();
+        //    context.setState({end: true});
+        //    clearInterval(frameCheck);
+        //    clearInterval(drawLoop);
+        //    clearInterval(generateTarget);
+        //    draw();
+        //  }
        }, 1000 / 30);
        
        var frameCheck = setInterval(()=> {
@@ -290,20 +297,6 @@
          }
        }, 1000 / 30);
 
-       var generateTarget = setInterval(()=>{
-         allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
-        //  if (context.state.health <= 0) {
-        //    audio.pause();
-        //    saveGame(this.props.currentUser.id, context.state);
-        //    context.setState({end: true});
-        //    clearInterval(frameCheck);
-        //    clearInterval(drawLoop);
-        //    clearInterval(generateTarget);
-        //    draw();
-        //  }
-       }, Math.floor(60000 / (context.state.bpm * modifier)) );
-
-
        var modifier = 1;
        if (context.state.difficulty === 'super_beginner') {
          modifier = .25;
@@ -317,6 +310,18 @@
          modifier = 4;
        }
 
+       var generateTarget = setInterval(()=>{
+         allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
+         if (context.state.health <= 0) {
+           audio.pause();
+           saveGame(this.props.currentUser.id, context.state);
+           context.setState({end: true});
+           clearInterval(frameCheck);
+           clearInterval(drawLoop);
+           clearInterval(generateTarget);
+           draw();
+         }
+       }, Math.floor(60000 / (context.state.bpm * modifier)) );
 
 
        var checkMove = () => {
@@ -328,7 +333,7 @@
          return output;
        };
 
-       function ListenEvents(canvas, ctx) {
+       function ListenEvents() {
          
          
          var validMove = (keyCodes) =>{
@@ -340,13 +345,13 @@
            if (moveCheck[moveCheck.length - 1] < 40) {
              if (moveCheck[moveCheck.length - 1] < 5) {
 
-               context.setState({exclamation: 'Pefect!'});
+               context.setState({exclamation: 'Pefect!', exclamationChange: true} );
              } else if (moveCheck[moveCheck.length - 1] < 20) {
-               context.setState({exclamation: 'Great!'});
+               context.setState({exclamation: 'Great!', exclamationChange: true });
              } else if (moveCheck[moveCheck.length - 1] < 30) {
-               context.setState({exclamation: 'Good!'}); 
+               context.setState({exclamation: 'Good!', exclamationChange: true }); 
              } else {
-               context.setState({exclamation: 'Nice try buddy!'});
+               context.setState({exclamation: 'Nice try buddy!', exclamationChange: true});
              }
              if (moveCheck[0] === keyCodes) {
                context.increaseScore();
