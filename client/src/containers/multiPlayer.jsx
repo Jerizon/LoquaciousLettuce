@@ -247,9 +247,12 @@ class Multiplayer extends React.Component {
 // ACTUAL GAME GAME STUFF
 
           ctx.fillStyle = 'white';
-          ctx.font = '40px Arial';
-          ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
+          ctx.font = '30px Arial';
+          ctx.fillText('ScoreP1: ' + context.state.scoreP1, 15, 50);
+          ctx.fillText('ComboP1: ' + context.state.comboP1, 200, 50);
           ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
+          ctx.fillText('ComboP2: ' + context.state.comboP2, 770, 50);
+
 // HEALTH INDICATOR
           if (context.state.healthP1 > 0) {
             ctx.fillRect(10, 60, context.state.healthP1 * 4, 25);
@@ -350,7 +353,7 @@ class Multiplayer extends React.Component {
           ctx.fillRect(0, 0, 1500, 800);
           ctx.fillStyle = 'white';
           ctx.fillText(' FINAL SCORE PLAYER 1: ' + context.state.scoreP1, 20, 50);
-          ctx.fillText(' FINAL SCORE PLAYER 2: ' + context.state.scoreP2, 600, 50);
+          ctx.fillText(' FINAL SCORE PLAYER 2: ' + context.state.scoreP2, 560, 50);
           ctx.font = '20px Arial';
           ctx.fillText(' THANKS FOR PLAYING ', 400, 150);
           ctx.fillText(' The Lucky Lemons Dev Group ', 380, 350);
@@ -446,7 +449,7 @@ class Multiplayer extends React.Component {
                   context.setState({exclamationP2: 'Nice try buddy!', exclamationChangeP2: true});
                 }
                 context.increaseScoreP2();
-                context.setState({comboP2: context.state.comboP2 + 2});
+                context.setState({comboP2: context.state.comboP2 + 1});
                 allRowsP2.rows.shift();
               }
               ctx.fillStyle = 'black';

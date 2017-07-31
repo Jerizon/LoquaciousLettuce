@@ -79,11 +79,7 @@
        var context = this;
        var canvas = this.refs.canvas;
        var ctx = this.refs.canvas.getContext('2d');
-<<<<<<< HEAD
-       ListenEvents(canvas, ctx);
-=======
-
->>>>>>> master
+       ListenEvents();
 
        var makeBall = function (xCor, yCor, color, keyBind) {
          var ball = {
