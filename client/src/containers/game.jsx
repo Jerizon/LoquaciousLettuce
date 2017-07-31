@@ -357,11 +357,7 @@
              } else if (moveCheck[moveCheck.length - 1] < 20) {
                context.setState({exclamation: 'Great!', exclamationChange: true });
              } else if (moveCheck[moveCheck.length - 1] < 30) {
-<<<<<<< HEAD
                context.setState({exclamation: 'Good!', exclamationChange: true }); 
-=======
-               console.log('okay!');
->>>>>>> master
              } else {
                context.setState({exclamation: 'Nice try buddy!', exclamationChange: true});
              }
