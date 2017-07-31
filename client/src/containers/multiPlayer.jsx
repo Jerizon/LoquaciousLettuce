@@ -325,6 +325,7 @@ class Multiplayer extends React.Component {
       }
 
       var drawLoop = setInterval(()=> {
+        console.log('Draw Loop');
         draw();
         if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0) {
           audio.pause();
@@ -347,15 +348,19 @@ class Multiplayer extends React.Component {
       } else if (context.state.difficulty === 'rockstar') {
         modifier = 4;
       }
+///////////////// FRAME CHECK
 
       var frameCheck = setInterval(()=>{
+        console.log('Frame Loop');
         var patternType = Math.floor(Math.random() * 10);
         var formationP1 = makeRow(patternType, 1);
         var formationP2 = makeRow(patternType, 2);
         allRowsP1.rows.push(formationP1);
         allRowsP2.rows.push(formationP2);
-        clearInterval(frameCheck);
-        clearInterval(drawLoop);
+        if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0) {
+          clearInterval(drawLoop);
+          clearInterval(frameCheck);
+        }
       }, (60000 / (context.state.bpm * modifier)) );
 
 
@@ -571,7 +576,7 @@ class Multiplayer extends React.Component {
               />
               {
                 this.state.ongoing === false &&
-                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); window.background.pause(); } }> Start Song </Button>
+                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); if (!!window.background ) { window.background.pause(); } } }> Start Song </Button>
               }
               {
                 this.state.end === true &&

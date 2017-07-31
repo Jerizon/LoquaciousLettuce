@@ -181,6 +181,9 @@
        var frequencyData = new Uint8Array(bufferLength);
 
        var counter = 0;
+
+
+
        function draw() {
 
          analyser.getByteFrequencyData(frequencyData);
@@ -250,6 +253,8 @@
 
 
        }
+
+       
        audio.play();
        var drawLoop = setInterval(()=> {
          draw();
@@ -320,7 +325,16 @@
            if (keyCodes.length === 2) {
              context.decreaseAttempt();
            }
-           if (moveCheck[moveCheck.length - 1] < 35) {
+           if (moveCheck[moveCheck.length - 1] < 40) {
+             if (moveCheck[moveCheck.length - 1] < 5) {
+               console.log('pefect!');
+             } else if (moveCheck[moveCheck.length - 1] < 20) {
+               console.log('great!')
+             } else if (moveCheck[moveCheck.length - 1] < 30) {
+               console.log('okay!'); 
+             } else {
+               console.log('nice try');
+             }
              if (moveCheck[0] === keyCodes) {
                context.increaseScore();
                allRows.rows.shift();
