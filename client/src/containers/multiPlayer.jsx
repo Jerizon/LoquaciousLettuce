@@ -87,7 +87,6 @@ class Multiplayer extends React.Component {
       if (this.state.ongoing === false) {
         this.updateCanvas();
         // setTimeout(function() {
-        //   audio.play();
           // }, (475 / (4 * (1000 / 30))) * 1000);
         this.setState({ongoing: true});
       }
@@ -324,6 +323,7 @@ class Multiplayer extends React.Component {
         }
       }
 
+      audio.play();
       var drawLoop = setInterval(()=> {
         draw();
         if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0) {

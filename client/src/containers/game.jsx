@@ -27,7 +27,8 @@
        difficulty: this.props.game.difficulty,
        player: this.props.game.difficulty,
        attemptPresses: 0,
-       songBlob: this.props.game.songBlob
+       songBlob: this.props.game.songBlob,
+       exclamation: null,
      };
      this.updateCanvas = this.updateCanvas.bind(this);
 
@@ -73,10 +74,9 @@
    updateCanvas() {
      if (this.state.game === true) {
        var context = this;
-       ListenEvents();
        var canvas = this.refs.canvas;
        var ctx = this.refs.canvas.getContext('2d');
-       
+       ListenEvents(canvas, ctx);
 
        var makeBall = function (xCor, yCor, color, keyBind) {
          var ball = {
@@ -181,7 +181,7 @@
        var frequencyData = new Uint8Array(bufferLength);
 
        var counter = 0;
-
+       var exclamationCounter = 1;
 
 
        function draw() {
@@ -220,11 +220,22 @@
                counter++;
                ctx.fillStyle = 'white';
              }
-
+            
            } else {
              ctx.fillStyle = 'white';
              ctx.fillRect(0, 572.5, 400, 10);
            }
+// EXCLAMATIONS!        
+           if (context.state.exclamation !== null) {
+             ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounter + ')';
+             ctx.fillText(`${context.state.exclamation}`, 50, 150);
+             exclamationCounter -= .05;
+             if (exclamationCounter <= 0) {
+               context.setState({exclamation: null});
+               exclamationCounter = 1;
+             }
+           }
+          
 // BORDER
            ctx.fillStyle = 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')';
            ctx.fillRect(0, 0, canvas.width, 10);
@@ -261,6 +272,7 @@
            context.setState({end: true});
            clearInterval(frameCheck);
            clearInterval(drawLoop);
+           clearInterval(generateTarget);
            draw();
          }
        }, 1000 / 30);
@@ -273,21 +285,24 @@
            context.setState({end: true});
            clearInterval(frameCheck);
            clearInterval(drawLoop);
+           clearInterval(generateTarget);
            draw();
          }
        }, 1000 / 30);
 
+       var generateTarget = setInterval(()=>{
+         allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
+        //  if (context.state.health <= 0) {
+        //    audio.pause();
+        //    saveGame(this.props.currentUser.id, context.state);
+        //    context.setState({end: true});
+        //    clearInterval(frameCheck);
+        //    clearInterval(drawLoop);
+        //    clearInterval(generateTarget);
+        //    draw();
+        //  }
+       }, Math.floor(60000 / (context.state.bpm * modifier)) );
 
-       /*
-
-      var refreshId = setInterval(function() {
-      var properID = CheckReload();
-      if (properID > 0) {
-          clearInterval(refreshId);
-        }
-      }, 10000);
-
-       */
 
        var modifier = 1;
        if (context.state.difficulty === 'super_beginner') {
@@ -302,9 +317,6 @@
          modifier = 4;
        }
 
-       setInterval(()=>{
-         allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
-       }, Math.floor(60000 / (context.state.bpm * modifier)) );
 
 
        var checkMove = () => {
@@ -316,7 +328,9 @@
          return output;
        };
 
-       function ListenEvents() {
+       function ListenEvents(canvas, ctx) {
+         
+         
          var validMove = (keyCodes) =>{
            context.increaseAttempt();
            var moveCheck = checkMove();
@@ -325,13 +339,14 @@
            }
            if (moveCheck[moveCheck.length - 1] < 40) {
              if (moveCheck[moveCheck.length - 1] < 5) {
-               console.log('pefect!');
+
+               context.setState({exclamation: 'Pefect!'});
              } else if (moveCheck[moveCheck.length - 1] < 20) {
-               console.log('great!')
+               context.setState({exclamation: 'Great!'});
              } else if (moveCheck[moveCheck.length - 1] < 30) {
-               console.log('okay!'); 
+               context.setState({exclamation: 'Good!'}); 
              } else {
-               console.log('nice try');
+               context.setState({exclamation: 'Nice try buddy!'});
              }
              if (moveCheck[0] === keyCodes) {
                context.increaseScore();

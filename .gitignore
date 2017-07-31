@@ -3,6 +3,8 @@ config/development.json
 config/staging.json
 config/test.json
 config/custom-environment-variables
+config/default.json
+config/development.example.json
 
 # OS X
 .DS_Store
