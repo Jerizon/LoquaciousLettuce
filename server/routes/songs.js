@@ -7,16 +7,17 @@ router.route('/')
   .get(SongController.getAll)
   .post(SongController.create)
   ;
-  
+
+
 router.route('/relTest')
   .get(SongController.relTest)
   ;
-  
-router.route('/relTest2')
+
+router.route('/relTest2/:profile_id')
   .get(SongController.relTest2)
   ;
-  
-router.route('/getAllSongsForUser/:profile_id')
+
+router.route('/getAllSongsForUser/:id')
   .get(SongController.getAllSongsForUser)
   ;
 

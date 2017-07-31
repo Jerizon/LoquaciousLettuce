@@ -37,6 +37,7 @@
 
      this.increaseAttempt = this.increaseAttempt.bind(this);
      this.decreaseAttempt = this.decreaseAttempt.bind(this);
+
    }
 
    componentDidMount() {
@@ -60,6 +61,7 @@
     //console.log(this.state.attemptPresses);
    }
 
+
    startSong() {
      this.setState({game: true});
     //console.log(this.state.game);
@@ -77,7 +79,11 @@
        var context = this;
        var canvas = this.refs.canvas;
        var ctx = this.refs.canvas.getContext('2d');
+<<<<<<< HEAD
        ListenEvents(canvas, ctx);
+=======
+
+>>>>>>> master
 
        var makeBall = function (xCor, yCor, color, keyBind) {
          var ball = {
@@ -213,6 +219,7 @@
 // HEALTH INDICATOR
            ctx.fillRect(10, 60, context.state.health * 4, 25);
 //
+
            if (context.state.hit === true) {
              if (counter === 5) {
                context.setState({hit: false});
@@ -283,11 +290,12 @@
         //    draw();
         //  }
        }, 1000 / 30);
-       
+
        var frameCheck = setInterval(()=> {
          draw();
          if (context.state.health <= 0) {
            audio.pause();
+           console.log('----> current user',this.props.currentUser);
            saveGame(this.props.currentUser.id, context.state);
            context.setState({end: true});
            clearInterval(frameCheck);
@@ -349,7 +357,11 @@
              } else if (moveCheck[moveCheck.length - 1] < 20) {
                context.setState({exclamation: 'Great!', exclamationChange: true });
              } else if (moveCheck[moveCheck.length - 1] < 30) {
+<<<<<<< HEAD
                context.setState({exclamation: 'Good!', exclamationChange: true }); 
+=======
+               console.log('okay!');
+>>>>>>> master
              } else {
                context.setState({exclamation: 'Nice try buddy!', exclamationChange: true});
              }

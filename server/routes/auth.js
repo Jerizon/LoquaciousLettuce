@@ -75,6 +75,9 @@ router.route('/userInfo')
 .get((req, res) => {
   //console.log('req---', req.user);
   res.send(200, req.user);
+
+  // res.status(200).send(req.user);
+
 });
 
 

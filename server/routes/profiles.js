@@ -14,4 +14,9 @@ router.route('/:id') // NOTE: PAYLOAD DATA ARE EMBEDDED IN THE req OBJECT, BUT A
   // .delete(ProfileController.deleteOne)
   ;
 
+router.route('/getProfilesByList')
+  .post(ProfileController.getProfilesByList)
+  // .post(ProfileController.create)
+  ;
+
 module.exports = router;

@@ -1,5 +1,4 @@
 // THIS FILE CONTAINS THE ATOMIC DB FUNCTIONS FOR THE 'profiles' TABLE ONLY. IT IS DRAWN IN BY THE 'index.js' FILE IN THIS SAME FOLDER. UNLIKE THE OTHER CONTROLLER FILES, THIS ONE WAS GIVEN BY THE REPO, NOT AUTHORED BY THE TESSELL8 TEAM. IT IS LARGELY UNCHANGED, AND SERVED AS THE TEMPLATE FOR THE OTHER CONTROLLER FILES.
-
 const models = require('../../db/models');
 
 module.exports.getAll = (req, res) => {
@@ -12,6 +11,7 @@ module.exports.getAll = (req, res) => {
       res.status(503).send(err);
     });
 };
+
 
 // WHY IS THIS COMMENTED OUT? BECAUSE REDIS IS HANDLING IT?
 
@@ -29,6 +29,7 @@ module.exports.getAll = (req, res) => {
 //     });
 // };
 
+
 module.exports.getOne = (req, res) => {
   models.Profile.where({ id: req.params.id }).fetch()
     .then(profile => {
@@ -44,6 +45,7 @@ module.exports.getOne = (req, res) => {
       res.sendStatus(404);
     });
 };
+
 
 module.exports.update = (req, res) => {
   models.Profile.where({ id: req.params.id }).fetch()
@@ -63,6 +65,19 @@ module.exports.update = (req, res) => {
       res.sendStatus(404);
     });
 };
+
+
+module.exports.getProfilesByList = (req, res) => {
+  models.Profile.where('id', 'IN', JSON.parse(req.body.profileListArray))
+    .fetchAll()
+    .then(profiles => {
+      res.status(200).send(profiles);
+    })
+    .catch(err => {
+      res.status(503).send(err);
+    });
+};
+
 
 // AGAIN, IS THIS COMMENTED OUT BECAUSE REDIS IS HANDLING THIS FUNCTION?
 

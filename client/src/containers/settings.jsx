@@ -9,14 +9,14 @@ import MusicSettings from './musicSettings.jsx';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import {getCurrentUser} from '../actions/index';
 import {getActiveProfile} from '../actions/index';
-import PageTransition from 'react-router-page-transition';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
 
 class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       songPlay: true,
-      background: null, 
+      background: null,
     };
   }
 
@@ -31,10 +31,10 @@ class Settings extends React.Component {
     if (this.state.songPlay === true) {
       background.volume = 0.2;
       background.id = 'background';
-      
+
       window.background = background;
-      background.play(); 
-      
+      background.play();
+
       this.changeSongState();
     }
     return (
@@ -48,24 +48,26 @@ class Settings extends React.Component {
         <br />
           <div>
             <div className="settingsPage">Settings Page</div>
+            <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
             {this.props.view === 'players' ?
-              <div>
+              <div key = {'players'}>
                 Player Count
                 <SelectPlayerSettings className="playerMode"/>
               </div>
             : this.props.view === 'song' ?
-              <div>
+              <div key = {'song'}>
                 Music Settings
                 <MusicSettings background={this.state.background}/>
               </div>
             : this.props.view === 'difficulty' ?
-              <div>
+              <div key = {'difficulty'}>
               Level Settings
                 <SelectLevelSettings background={this.state.background}/>
               </div>
-            : <div>
+            : <div key = {'noview'}>
                 No View is Selected
               </div>}
+              </ReactCSSTransitionGroup>
             </div>
       </div>
     );

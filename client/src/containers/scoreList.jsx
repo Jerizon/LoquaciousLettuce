@@ -20,9 +20,10 @@ class ScoreList extends React.Component {
     return sorted.map((user, index) => {
       // console.log(user.id);
       return (
+
         <div key={index} >
 
-          <li onClick={() => { this.props.selectUser(user); this.props.showModal({visibility: true, user: user}); } }>
+          <li key={user.id.toString()} onClick={() => { this.props.selectUser(user); this.props.showModal({visibility: true, user: user, score:this.props.topTenScores[index]}); } }>
 
               <div id="items" className="col-sm-6-offset-3">
               <div id="scoreList" className="col-sm-8">
@@ -30,7 +31,8 @@ class ScoreList extends React.Component {
                   {user.username}
                 </div>
 
-                <div id="score">{user.score}<br></br></div>
+
+                <div id="score">{this.props.topTenScores[index]}<br></br></div>
               </div>
 
 
@@ -64,7 +66,8 @@ class ScoreList extends React.Component {
                   Advanced: <br></br>
                   Rockstar: <br></br>
                 </div>
-                <div id="scr" className="col-sm-2">highdcores: {this.props.showScoreModal.user.score}</div>
+
+                <div id="scr" className="col-sm-2"> highscores: {this.props.showScoreModal.score}</div>
 
               </Modal.Body>
               <Modal.Footer>
@@ -84,7 +87,7 @@ var mapStateToProps = (state) => {
   return {
     topTenScoresUsers: state.topTenScoresUsers,
     showScoreModal: state.showScoreModal,
-    //getTopTenScores: state.getTopTenScores
+    topTenScores: state.topTenScores
   };
 };
 
