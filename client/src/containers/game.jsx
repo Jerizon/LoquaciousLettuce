@@ -253,8 +253,6 @@
 
 
        }
-
-       
        audio.play();
        var drawLoop = setInterval(()=> {
          draw();

@@ -65,6 +65,7 @@ class ScoreList extends React.Component {
                   Rockstar: <br></br>
                 </div>
                 <div id="scr" className="col-sm-2">highdcores: {this.props.showScoreModal.user.score}</div>
+
               </Modal.Body>
               <Modal.Footer>
                footer
@@ -92,3 +93,4 @@ var mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScoreList);
+

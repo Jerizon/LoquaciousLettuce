@@ -16,6 +16,7 @@ body {
   display: inline-block;
   margin-right: 30px;
 }
+
 #title {
   margin-top: 45px;
   color: white;
@@ -131,7 +132,6 @@ body {
 #profileStats {
   height: 412px;
 }
-
 
 .levels {
   /*background-color: lightgrey;*/
