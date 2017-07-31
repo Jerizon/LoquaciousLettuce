@@ -33,7 +33,11 @@ class Multiplayer extends React.Component {
       //player: this.props.game.difficulty,
       attemptPressesP1: 0,
       attemptPressesP2: 0,
-      songBlob: this.props.game.songBlob
+      songBlob: this.props.game.songBlob,
+      exclamationP1: null,
+      exclamationChangeP1: false,
+      exclamationP2: null,
+      exclamationChangeP2: false
     };
     this.updateCanvas = this.updateCanvas.bind(this);
 
@@ -222,6 +226,9 @@ class Multiplayer extends React.Component {
       var counterP1 = 0;
       var counterP2 = 0;
 
+      var exclamationCounterP1 = 1;
+      var exclamationCounterP2 = 1;
+
       function draw() {
 
         if (context.state.end === false) {
@@ -250,7 +257,34 @@ class Multiplayer extends React.Component {
           if (context.state.healthP2 > 0) {
             ctx.fillRect(580, 60, context.state.healthP2 * 4, 25);
           }
-
+// EXCLAMATIONS
+          if (context.state.exclamationP1 !== null) {
+            if (context.state.exclamationChangeP1 === true) {
+              exclamationCounterP1 = 1;
+              context.setState({exclamationChangeP1: false});
+            }
+            ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounterP1 + ')';
+            ctx.fillText(`${context.state.exclamationP1}`, 50, 150);
+            exclamationCounterP1 -= .05;
+            if (exclamationCounterP1 <= 0) {
+              context.setState({exclamationP1: null});
+              exclamationCounterP1 = 1;
+            }
+          }
+          
+          if (context.state.exclamationP2 !== null) {
+            if (context.state.exclamationChangeP2 === true) {
+              exclamationCounterP2 = 1;
+              context.setState({exclamationChangeP2: false});
+            }
+            ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounterP2 + ')';
+            ctx.fillText(`${context.state.exclamationP2}`, 800, 150);
+            exclamationCounterP2 -= .05;
+            if (exclamationCounterP2 <= 0) {
+              context.setState({exclamationP2: null});
+              exclamationCounterP2 = 1;
+            }
+          }
 // BORDER
           ctx.fillStyle = 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')';          
           ctx.fillRect(0, 0, canvas.width / 2, 10);
@@ -386,13 +420,31 @@ class Multiplayer extends React.Component {
               context.decreaseAttemptP2();
             }
           }
-          if (moveCheck[moveCheck.length - 1] < 35) {
+          if (moveCheck[moveCheck.length - 1] < 40) {
             if (moveCheck[0] === keyCodes) {
               if (player === 'playerOne') {
+                if (moveCheck[moveCheck.length - 1] < 5) {
+                  context.setState({exclamationP1: 'Pefect!', exclamationChangeP1: true} );
+                } else if (moveCheck[moveCheck.length - 1] < 20) {
+                  context.setState({exclamationP1: 'Great!', exclamationChangeP1: true });
+                } else if (moveCheck[moveCheck.length - 1] < 30) {
+                  context.setState({exclamationP1: 'Good!', exclamationChangeP1: true }); 
+                } else {
+                  context.setState({exclamationP1: 'Nice try buddy!', exclamationChangeP1: true});
+                }
                 context.increaseScoreP1();
                 context.setState({comboP1: context.state.comboP1 + 1});
                 allRowsP1.rows.shift();
               } else {
+                if (moveCheck[moveCheck.length - 1] < 5) {
+                  context.setState({exclamationP2: 'Pefect!', exclamationChangeP2: true} );
+                } else if (moveCheck[moveCheck.length - 1] < 20) {
+                  context.setState({exclamationP2: 'Great!', exclamationChangeP2: true });
+                } else if (moveCheck[moveCheck.length - 1] < 30) {
+                  context.setState({exclamationP2: 'Good!', exclamationChangeP2: true }); 
+                } else {
+                  context.setState({exclamationP2: 'Nice try buddy!', exclamationChangeP2: true});
+                }
                 context.increaseScoreP2();
                 context.setState({comboP2: context.state.comboP2 + 2});
                 allRowsP2.rows.shift();
