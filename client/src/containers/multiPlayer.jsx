@@ -324,15 +324,14 @@ class Multiplayer extends React.Component {
         }
       }
 
-      setTimeout(function() {
-        audio.play();
-      }, (375 / (4 * (1000 / 30))) * 1000);
-
-      setInterval(()=> {
+      var drawLoop = setInterval(()=> {
         draw();
         if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0) {
           audio.pause();
           context.setState({end: true});
+          clearInterval(frameCheck);
+          clearInterval(drawLoop);
+          draw();
         }
       }, 1000 / 30);
 
@@ -349,12 +348,14 @@ class Multiplayer extends React.Component {
         modifier = 4;
       }
 
-      setInterval(()=>{
+      var frameCheck = setInterval(()=>{
         var patternType = Math.floor(Math.random() * 10);
         var formationP1 = makeRow(patternType, 1);
         var formationP2 = makeRow(patternType, 2);
         allRowsP1.rows.push(formationP1);
         allRowsP2.rows.push(formationP2);
+        clearInterval(frameCheck);
+        clearInterval(drawLoop);
       }, (60000 / (context.state.bpm * modifier)) );
 
 
@@ -556,7 +557,6 @@ class Multiplayer extends React.Component {
     } else {
       var songBlob = `assets/music/${this.state.song}`;
     }
-    console.log('OBJECT', this.state);
     return (
       <div className= 'multiplayer text-center'>
         <div>

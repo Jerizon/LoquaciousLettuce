@@ -102,20 +102,18 @@ class MusicSettings extends React.Component {
     var context = this;
     file.onchange = function() {
       var files = this.files;
-      console.log('SONG BLOB HERE', URL.createObjectURL(files[0]));
-      //var sound = new Audio(URL.createObjectURL(files[0]));
-      context.props.changeBlob(URL.createObjectURL(files[0]));
-      //sound.play();
+      if (!!files[0]){
+        context.props.changeBlob(URL.createObjectURL(files[0]));
+      }
     };
     file.onchange();
-    // audio.
   }
 
   render() {
     var woosh = new Audio("assets/sfx/Woosh.wav");
     woosh.play(); 
     var click = new Audio("assets/sfx/Click.mp3");
-  
+    var youtubeBind = this.youtubeSearch.bind(this);
     
     var changeView = this.props.changeView.bind(this);
     return (
@@ -123,11 +121,11 @@ class MusicSettings extends React.Component {
       Select Your Music<br></br>
       {
         this.props.game.players === 1 &&
-        <Link to='/game'><Button className="levelChoiceBtn" onClick = {()=> { changeView('players'); this.youtubeSearch.bind(this); } }>Play!</Button></Link>
+        <Link to='/game'><Button className="levelChoiceBtn" onClick = {()=> { youtubeBind(); changeView('players');  } }>Play!</Button></Link>
       }
       {
         this.props.game.players === 2 &&
-        <Link to='/multiPlayer'><Button className="levelChoiceBtn" onClick={()=> { changeView('players'); this.youtubeSearch.bind(this); } }>Play!</Button></Link>
+        <Link to='/multiPlayer'><Button className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>Play!</Button></Link>
       }
         <div id="content">
           <input type="file" id="music" accept="audio/*" />
