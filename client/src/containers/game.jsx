@@ -213,9 +213,25 @@
            ctx.fillText('Combo: ' + context.state.combo, 190, 50);
 
 // HEALTH INDICATOR
-           ctx.fillRect(10, 60, context.state.health * 4, 25);
-//
+           ctx.fillStyle = 'white';
+           ctx.fillRect(10, 57, 400, 31);
+           ctx.fillStyle = 'black';
+           ctx.fillRect(10, 58, 400, 29);
+           
+           var healthGradientBack = ctx.createLinearGradient(150, 0, 300, 0);
+           healthGradientBack.addColorStop(0, 'red');
+           healthGradientBack.addColorStop(1, 'yellow');
+           ctx.fillStyle = healthGradientBack;
+           ctx.fillRect(10, 60, 400, 25);
 
+           var healthGradient = ctx.createLinearGradient(0, 0, 250, 0);
+           healthGradient.addColorStop(0, 'blue');
+           healthGradient.addColorStop(1, 'green');
+
+           ctx.fillStyle = healthGradient;
+           ctx.fillRect(10, 60, context.state.health * 4, 25);
+
+// Hit the dots
            if (context.state.hit === true) {
              if (counter === 5) {
                context.setState({hit: false});
@@ -231,6 +247,7 @@
              ctx.fillStyle = 'white';
              ctx.fillRect(0, 572.5, 400, 10);
            }
+
 // EXCLAMATIONS!        
            if (context.state.exclamation !== null) {
              if (context.state.exclamationChange === true) {
@@ -238,7 +255,8 @@
                context.setState({exclamationChange: false});
              }
              ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounter + ')';
-             ctx.fillText(`${context.state.exclamation}`, 50, 150);
+             ctx.font = '50px Arial';
+             ctx.fillText(`${context.state.exclamation}`, 125, 150);
              exclamationCounter -= .05;
              if (exclamationCounter <= 0) {
                context.setState({exclamation: null});
@@ -247,10 +265,30 @@
            }
           
 // BORDER
-           ctx.fillStyle = 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')';
+           //ctx.fillStyle = 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')';
+           var borderTop = ctx.createLinearGradient(0, 0, 0, 10);
+           borderTop.addColorStop(0, 'white');
+           borderTop.addColorStop(1, 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')');
+           ctx.fillStyle = borderTop;
            ctx.fillRect(0, 0, canvas.width, 10);
+
+           
+           var borderLeft = ctx.createLinearGradient(0, 0, 10, 0);
+           borderLeft.addColorStop(0, 'white');
+           borderLeft.addColorStop(1, 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')');
+           ctx.fillStyle = borderLeft;
            ctx.fillRect(0, 0, 10, canvas.height);
+           
+           var borderBot = ctx.createLinearGradient(canvas.width - 10, 0, canvas.width, 0);
+           borderBot.addColorStop(0, 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')');
+           borderBot.addColorStop(1, 'white');
+           ctx.fillStyle = borderBot;
            ctx.fillRect(canvas.width - 10, 0, 10, canvas.height);
+
+           var borderRight = ctx.createLinearGradient(0, canvas.height - 10, 0, canvas.height);
+           borderRight.addColorStop(0, 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')');
+           borderRight.addColorStop(1, 'white');
+           ctx.fillStyle = borderRight;
            ctx.fillRect(0, canvas.height - 10, canvas.width, 10);
            ctx.fillStyle = 'white';
 
@@ -356,7 +394,7 @@
              } else if (moveCheck[moveCheck.length - 1] < 30) {
                context.setState({exclamation: 'Good!', exclamationChange: true }); 
              } else {
-               context.setState({exclamation: 'Nice try buddy!', exclamationChange: true});
+               context.setState({exclamation: 'Nice!', exclamationChange: true});
              }
              if (moveCheck[0] === keyCodes) {
                context.increaseScore();

@@ -254,9 +254,37 @@ class Multiplayer extends React.Component {
           ctx.fillText('ComboP2: ' + context.state.comboP2, 770, 50);
 
 // HEALTH INDICATOR
+          ctx.fillStyle = 'white';
+          ctx.fillRect(10, 57, 404, 31);
+          ctx.fillRect(576, 57, 408, 31);
+          ctx.fillStyle = 'black';
+          ctx.fillRect(10, 58, 402, 29);
+          ctx.fillRect(578, 58, 404, 29);
+           
+          var healthGradientBack = ctx.createLinearGradient(150, 0, 300, 0);
+          healthGradientBack.addColorStop(0, 'red');
+          healthGradientBack.addColorStop(1, 'yellow');
+          ctx.fillStyle = healthGradientBack;
+          ctx.fillRect(10, 60, 400, 25);
+
+          var healthGradientBack2 = ctx.createLinearGradient(580, 0, 1000, 0);
+          healthGradientBack2.addColorStop(0, 'red');
+          healthGradientBack2.addColorStop(1, 'yellow');
+          ctx.fillStyle = healthGradientBack2;
+          ctx.fillRect(580, 60, 400, 25);
+
+          var healthGradient = ctx.createLinearGradient(0, 0, 250, 0);
+          healthGradient.addColorStop(0, 'blue');
+          healthGradient.addColorStop(1, 'green');
+          ctx.fillStyle = healthGradient;
           if (context.state.healthP1 > 0) {
             ctx.fillRect(10, 60, context.state.healthP1 * 4, 25);
           }
+
+          var healthGradient2 = ctx.createLinearGradient(580, 0, 850, 0);
+          healthGradient2.addColorStop(0, 'blue');
+          healthGradient2.addColorStop(1, 'green');
+          ctx.fillStyle = healthGradient2;
           if (context.state.healthP2 > 0) {
             ctx.fillRect(580, 60, context.state.healthP2 * 4, 25);
           }
@@ -267,6 +295,7 @@ class Multiplayer extends React.Component {
               context.setState({exclamationChangeP1: false});
             }
             ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounterP1 + ')';
+            ctx.font = '40px Arial';
             ctx.fillText(`${context.state.exclamationP1}`, 50, 150);
             exclamationCounterP1 -= .05;
             if (exclamationCounterP1 <= 0) {
@@ -288,16 +317,73 @@ class Multiplayer extends React.Component {
               exclamationCounterP2 = 1;
             }
           }
-// BORDER
-          ctx.fillStyle = 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')';          
+// P1 BORDER
+          //ctx.fillStyle = 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')';          
+         
+          var borderTop = ctx.createLinearGradient(0, 0, 0, 10);
+          borderTop.addColorStop(0, 'white');
+          borderTop.addColorStop(1, 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')');
+          ctx.fillStyle = borderTop;
           ctx.fillRect(0, 0, canvas.width / 2, 10);
+
+          var borderLeft = ctx.createLinearGradient(0, 0, 10, 0);
+          borderLeft.addColorStop(0, 'white');
+          borderLeft.addColorStop(1, 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')');
+          ctx.fillStyle = borderLeft;
           ctx.fillRect(0, 0, 10, canvas.height);
+
+          var borderRight = ctx.createLinearGradient(0, canvas.height - 10, 0, canvas.height);
+          borderRight.addColorStop(0, 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')');
+          borderRight.addColorStop(1, 'white');
+          ctx.fillStyle = borderRight;
           ctx.fillRect(0, canvas.height - 10, canvas.width / 2, 10);
-          ctx.fillStyle = 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')';
-          ctx.fillRect(canvas.width - 10, 0, 10, canvas.height);
+          
+          
+          
+          
+          
+          
+          
+          
+          
+//Player 2 Border 
+          // var borderTop = ctx.createLinearGradient(0, 0, 0, 10);
+          // borderTop.addColorStop(0, 'white');
+          // borderTop.addColorStop(1, 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')');
+          // ctx.fillStyle = borderTop;
+          // ctx.fillRect(0, 0, canvas.width, 10);          
+          //ctx.fillStyle = 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')';
+          
+          var borderTopP2 = ctx.createLinearGradient(0, 0, 0, 10);
+          borderTopP2.addColorStop(0, 'white');
+          borderTopP2.addColorStop(1, 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')');
+          ctx.fillStyle = borderTopP2;
           ctx.fillRect(canvas.width / 2, 0, canvas.width / 2, 10);
+          
+          
+          //ctx.fillRect(canvas.width - 10, 0, 10, canvas.height);
+          
+          var borderBot = ctx.createLinearGradient(canvas.width - 10, 0, canvas.width, 0);
+          borderBot.addColorStop(1, 'white');
+          borderBot.addColorStop(0, 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')');
+          ctx.fillStyle = borderBot;
+
+          ctx.fillRect(canvas.width - 10, 0, 10, canvas.height);
+          // ctx.fillRect(canvas.width / 2, 0, canvas.width / 2, 10);
+        
+          var borderRight = ctx.createLinearGradient(0, canvas.height - 10, 0, canvas.height);
+          borderRight.addColorStop(0, 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')');
+          borderRight.addColorStop(1, 'white');
+          ctx.fillStyle = borderRight;
           ctx.fillRect(canvas.width / 2, canvas.height - 10, canvas.width / 2, 10);
           ctx.fillStyle = 'white';
+
+
+
+
+
+
+
   /*                Player 1 Hit condition            */
           if (context.state.hitP1 === true) {
             if (counterP1 === 5) {
@@ -352,6 +438,7 @@ class Multiplayer extends React.Component {
           ctx.fillStyle = 'black';
           ctx.fillRect(0, 0, 1500, 800);
           ctx.fillStyle = 'white';
+          ctx.font = '20px Arial';
           ctx.fillText(' FINAL SCORE PLAYER 1: ' + context.state.scoreP1, 20, 50);
           ctx.fillText(' FINAL SCORE PLAYER 2: ' + context.state.scoreP2, 560, 50);
           ctx.font = '20px Arial';
