@@ -1,6 +1,6 @@
 # Project Name
 
-The project description
+TESSELL8 is a Guitar-Hero-style game which uses the player's computer's keyboard as the input controller. As the music begins, object descend from the top of the game field to the bottom in four columns. The challenge is to hit the key corresponding to the column at the same moment the object intersects the line at the bottom. Ideally, these intersections should occur at the same moment that the players hear a beat in the music, so that they can use the music to help guide their timing, and to create an enjoyable, rhythmic music experience.
 
 ## Team
 
@@ -13,10 +13,6 @@ The project description
 
 View the project roadmap (https://docs.google.com/document/d/1prrXn4fHeLL_dUSxXDWNbhA-Cax1CoZ1z3pSbSNXtkY/edit?usp=sharing)
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
-
 # Table of Contents
 
 1. [Usage](#Usage)
@@ -27,14 +23,54 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## Usage
 
-> Some usage instructions
+This game is for education and entertainment purposes.
+
+To play TESSEL8, you must register, and, subsequently, log in. After doing that, simply follow the on-screen instructions. 
+
+You can use your own choice of music! Follow the prompts to select a song from Spotify and it will play in the background while you play the game.
+
+From your player-profile page, you can see the scores of the games you have played, filtered by song and difficulty-level.
 
 ## Requirements
 
-- Node 6.9.x
-- Redis 3.2.x
-- Postgresql 9.6.x
-- etc
+ - Node
+ - Redis
+ - Postgresql
+ - axios
+ - bluebird
+ - body-parser
+ - bookshelf
+ - bootstrap
+ - connect-flash
+ - connect-redis
+ - cookie-parser
+ - ejs
+ - express
+ - jquery
+ - keyboardjs
+ - knex
+ - morgan
+ - passport-spotify
+ - pg
+ - querystring
+ - react
+ - react-addons-css-transition-group
+ - react-audio-player
+ - react-bootstrap
+ - react-dom
+ - react-music-player
+ - react-redux
+ - react-router
+ - react-router-dom
+ - react-router-page-transition
+ - react-sound
+ - redis
+ - redux
+ - redux-promise
+ - redux-thunk
+ - request
+ - save
+
 
 ## Development
 
@@ -45,8 +81,6 @@ brew install yarn
 brew install redis
 brew install postgresql
 ```
-
-Yarn is a replacement for npm. It's faster and *guarantees* consistency -- as you deploy your code in various environments, you won't run the risk of slight variations in what gets installed.
 
 ### Install Project Dependencies
 
@@ -102,5 +136,3 @@ To run server: `yarn run start`
 To run tests: `yarn run test`
 
 To run your redis server for the session store `redis-server`
-
-
