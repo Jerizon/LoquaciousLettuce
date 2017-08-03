@@ -5,7 +5,6 @@ export default (state = UsersData, action) => {
   switch (action.type) {
     case 'UPDATE_TOP_TEN': {
       state = action.payload;
-      console.log('hereeeeeee');
       break;
     }
   }
