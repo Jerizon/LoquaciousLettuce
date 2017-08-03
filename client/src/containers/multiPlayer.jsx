@@ -7,7 +7,7 @@ import {Button} from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {changeSong, getGame} from '../actions/index';
+import {changeSong, saveGame, getGame} from '../actions/index';
 import visuals from '../visualizations/songVisuals.js';
 
 class Multiplayer extends React.Component {
@@ -249,7 +249,7 @@ class Multiplayer extends React.Component {
 
 // BACKGROUND FOR AUDIO ANALYTICS
           visuals[1](upperX, upperY, lowerX, lowerY, frequencyData, ctx, bufferLength);
-          
+
 // ACTUAL GAME GAME STUFF
 
           ctx.fillStyle = 'white';
@@ -266,7 +266,7 @@ class Multiplayer extends React.Component {
           ctx.fillStyle = 'black';
           ctx.fillRect(10, 58, 402, 29);
           ctx.fillRect(578, 58, 404, 29);
-           
+
           var healthGradientBack = ctx.createLinearGradient(150, 0, 300, 0);
           healthGradientBack.addColorStop(0, 'red');
           healthGradientBack.addColorStop(1, 'yellow');
@@ -309,7 +309,7 @@ class Multiplayer extends React.Component {
               exclamationCounterP1 = 1;
             }
           }
-          
+
           if (context.state.exclamationP2 !== null) {
             if (context.state.exclamationChangeP2 === true) {
               exclamationCounterP2 = 1;
@@ -324,8 +324,8 @@ class Multiplayer extends React.Component {
             }
           }
 // P1 BORDER
-          //ctx.fillStyle = 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')';          
-         
+          //ctx.fillStyle = 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')';
+
           var borderTop = ctx.createLinearGradient(0, 0, 0, 10);
           borderTop.addColorStop(0, 'white');
           borderTop.addColorStop(1, 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')');
@@ -343,32 +343,32 @@ class Multiplayer extends React.Component {
           borderRight.addColorStop(1, 'white');
           ctx.fillStyle = borderRight;
           ctx.fillRect(0, canvas.height - 10, canvas.width / 2, 10);
-          
-          
-          
-          
-          
-          
-          
-          
-          
-//Player 2 Border 
+
+
+
+
+
+
+
+
+
+//Player 2 Border
           // var borderTop = ctx.createLinearGradient(0, 0, 0, 10);
           // borderTop.addColorStop(0, 'white');
           // borderTop.addColorStop(1, 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')');
           // ctx.fillStyle = borderTop;
-          // ctx.fillRect(0, 0, canvas.width, 10);          
+          // ctx.fillRect(0, 0, canvas.width, 10);
           //ctx.fillStyle = 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')';
-          
+
           var borderTopP2 = ctx.createLinearGradient(0, 0, 0, 10);
           borderTopP2.addColorStop(0, 'white');
           borderTopP2.addColorStop(1, 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')');
           ctx.fillStyle = borderTopP2;
           ctx.fillRect(canvas.width / 2, 0, canvas.width / 2, 10);
-          
-          
+
+
           //ctx.fillRect(canvas.width - 10, 0, 10, canvas.height);
-          
+
           var borderBot = ctx.createLinearGradient(canvas.width - 10, 0, canvas.width, 0);
           borderBot.addColorStop(1, 'white');
           borderBot.addColorStop(0, 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')');
@@ -376,7 +376,7 @@ class Multiplayer extends React.Component {
 
           ctx.fillRect(canvas.width - 10, 0, 10, canvas.height);
           // ctx.fillRect(canvas.width / 2, 0, canvas.width / 2, 10);
-        
+
           var borderRight = ctx.createLinearGradient(0, canvas.height - 10, 0, canvas.height);
           borderRight.addColorStop(0, 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')');
           borderRight.addColorStop(1, 'white');
@@ -427,7 +427,7 @@ class Multiplayer extends React.Component {
           img.src = 'assets/dots/crosshair.png';
           var frame = (context.state.gifFrame % 29);
           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 20, 552, 50, 50);
-          
+
           ctx.fillText('A', 36, 585);
           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 120, 552, 50, 50);
           ctx.fillText('S', 136, 585);
@@ -461,8 +461,11 @@ class Multiplayer extends React.Component {
           });
           allRowsP2.checkDelete();
           allRowsP2.flashDots();
-          
+
         } else {
+
+          console.log('----> current user',context.props.currentUser);
+           context.props.saveGame(context.props.currentUser.id, context.state);
 
           ctx.clearRect(-50, -50, 1500, 1500);
           ctx.fillStyle = 'black';
@@ -553,7 +556,7 @@ class Multiplayer extends React.Component {
                 } else if (moveCheck[moveCheck.length - 1] < 20) {
                   context.setState({exclamationP1: 'Great!', exclamationChangeP1: true });
                 } else if (moveCheck[moveCheck.length - 1] < 30) {
-                  context.setState({exclamationP1: 'Good!', exclamationChangeP1: true }); 
+                  context.setState({exclamationP1: 'Good!', exclamationChangeP1: true });
                 } else {
                   context.setState({exclamationP1: 'Nice try buddy!', exclamationChangeP1: true});
                 }
@@ -566,7 +569,7 @@ class Multiplayer extends React.Component {
                 } else if (moveCheck[moveCheck.length - 1] < 20) {
                   context.setState({exclamationP2: 'Great!', exclamationChangeP2: true });
                 } else if (moveCheck[moveCheck.length - 1] < 30) {
-                  context.setState({exclamationP2: 'Good!', exclamationChangeP2: true }); 
+                  context.setState({exclamationP2: 'Good!', exclamationChangeP2: true });
                 } else {
                   context.setState({exclamationP2: 'Nice try buddy!', exclamationChangeP2: true});
                 }
@@ -757,19 +760,20 @@ class Multiplayer extends React.Component {
                 this.state.end === true &&
                 <Button><Link to='/score'>Score</Link></Button>
               }
-              
+
       </div>
     );
   }
 }
 var mapStateToProps = (state) => {
   return {
-    game: state.game
+    game: state.game,
+    currentUser: state.currentUser
   };
 };
 
 var matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({getGame: getGame, changeSong: changeSong}, dispatch);
+  return bindActionCreators({getGame: getGame, changeSong: changeSong, saveGame: saveGame}, dispatch);
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(Multiplayer);

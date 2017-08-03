@@ -17,6 +17,7 @@ router.route('/:id')
   .delete(GameController.deleteOne)
   ;
 
+
 router.route('/getAllGamesForUser/:profile_id')
 
 // All games for one user with highest score for each difficulty level, number of games played at each difficulty level, and the average of all that player's scores
