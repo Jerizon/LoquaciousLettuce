@@ -4,7 +4,7 @@
   "scripts": {
     "start": "nodemon server",
     "test": "NODE_ENV=test grunt test",
-    "build": "NODE_ENV=proudction webpack --watch",
+    "build": "NODE_ENV=production webpack --watch",
     "heroku-postbuild": "webpack -p"
   },
   "author": "Hack Reactor",

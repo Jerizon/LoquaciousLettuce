@@ -4,7 +4,7 @@
     "connection": {
       "database": "dbq90t7t9s1don",
       "user": "laqfaxpzpylahy",
-      "password": "a8b8f1fd289c5dcc8a012a352721a38283218c77122f5ca640728c3e28844a8e", // IF THIS IS 'chon', SORRY. THAT IS FOR MY MACHINE ONLY AND I APPARENTLY FORGOT TO CHANGE IT BACK BEFORE PUSHING. IT WAS 'postgres' IN THE STARTER REPO, AND 'password' WHEN I GOT Y'ALL'S CHANGES ON 07/19.
+      "password": "a8b8f1fd289c5dcc8a012a352721a38283218c77122f5ca640728c3e28844a8e", 
       "host": "ec2-23-23-225-12.compute-1.amazonaws.com",
       "port": 5432,
       "charset" : "utf8"
@@ -34,5 +34,9 @@
   },
   "redis": {
     "REDIS_URL" : "redis://h:p0742d847e9e1034e012ee151e9859cd31afdc76dee688f50f6bd4938099580f6@ec2-52-3-6-123.compute-1.amazonaws.com:22389"
+  },
+
+  "youtubeKey": {
+    "key": "AIzaSyC5yIOrzHz53f1ByTgYzP2Yn586TDDb-1Y"
   }
 }
