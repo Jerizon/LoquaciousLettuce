@@ -1,6 +1,7 @@
 {
   "knex": {
-    "connection": "postgres://ffdpjcizotjwvj:2c654b3381c92556d5c088f5df3f0b8854129b7ae50857b4950ca45045523733@ec2-107-20-188-239.compute-1.amazonaws.com:5432/d6a5vchpgqakde&sslfactory=org.postgresql.ssl.NonValidatingFactory",
+    "client": "postgresql",
+    "connection": "postgres://ffdpjcizotjwvj:2c654b3381c92556d5c088f5df3f0b8854129b7ae50857b4950ca45045523733@ec2-107-20-188-239.compute-1.amazonaws.com:5432/d6a5vchpgqakde",
     "pool": {
       "min": 1,
       "max": 2
