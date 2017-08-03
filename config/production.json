@@ -1,14 +1,6 @@
 {
   "knex": {
-    "client": "postgresql",
-    "connection": {
-      "database": "d6a5vchpgqakde",
-      "user": "ffdpjcizotjwvj",
-      "password": "2c654b3381c92556d5c088f5df3f0b8854129b7ae50857b4950ca45045523733", 
-      "host": "ec2-107-20-188-239.compute-1.amazonaws.com",
-      "port": 5432,
-      "charset" : "utf8"
-    },
+    "connection": "postgres://ffdpjcizotjwvj:2c654b3381c92556d5c088f5df3f0b8854129b7ae50857b4950ca45045523733@ec2-107-20-188-239.compute-1.amazonaws.com:5432/d6a5vchpgqakde&sslfactory=org.postgresql.ssl.NonValidatingFactory",
     "pool": {
       "min": 1,
       "max": 2
