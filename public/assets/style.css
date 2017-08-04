@@ -4,17 +4,28 @@
     display: none;
 }
 
+.image-upload:hover {
+  cursor: url('pics/cursorPink.png'), auto !important;
+}
+
 #imageMssg {
     visibility: hidden;
     height:3px;
-    margin-left:10px;
+    /*margin-left:px;*/
+    margin-bottom: 5px;
+    color: white;
+    font-family: Iceland;
 }
 
 #profile-pic:hover + #imageMssg {
+  
     visibility: visible;
     text-align: center;
 }
 
+#profile-pic:hover {
+    cursor: url('pics/cursorPink.png'), auto !important;
+}
 
 h1 {
   font-size: 30px;
@@ -199,6 +210,66 @@ body {
   border-radius: 10px;
 }
 
+.profileButton {
+  text-decoration: none !important;
+  cursor: url('pics/cursorPink.png'), auto !important;
+  height: 60px;
+  width: 120px;
+  display: inline-block;
+  vertical-align: top;
+  background-color: black;
+  margin-left: 75px;
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.profileButton:hover, .profileButtonGame:hover {
+  background-color: lightblue;
+  text-decoration: none !important;
+};
+
+#ridofLinks {
+  text-decoration: none !important;
+}
+.profileButtonGame {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  height: 100px;
+  width: 770px;
+  background-color: black;
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.toplineContainer {
+  height: 60px;
+  width: 720px;
+}
+.nextlineDisplay {
+  float:right;
+  display:inline-block
+}
+
+.toplineDisplay {
+  display: inline-block;
+}
+
+
+.row {
+  height: 500px;
+  width: 1200px;
+}
+
+
 .lastSignupButton {
   cursor: url('pics/cursorPink.png'), auto !important;
   margin-left: 45px;
@@ -278,7 +349,7 @@ body {
 
 .scoreDisplayContainer {
   height: 70px;
-  width: 300px;
+  width: 410px;
   display: inline-block;
   vertical-align: top;
   margin-top: 10px;
@@ -286,7 +357,7 @@ body {
 
 .scoreScoreContainer {
   height: 70px;
-  width: 410px;
+  width: 300px;
   display: inline-block;
   vertical-align: top;
   margin-top: 5px;
@@ -641,11 +712,8 @@ body {
 }
 
 .searchTab {
-  /*margin-right: 10px;*/
-  /*margin-left: px;*/
   cursor: url('pics/cursorPink.png'), auto !important;
-  float: right; 
-
+  float: right;
   background-color: black;
   width: 450px;
   height: 100px;
@@ -817,7 +885,16 @@ body {
 
 #profileStats {
   font-family: Iceland;
-  height: 412px;
+  color: white;
+  height: 435px;
+  background-color: black;  
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
+  border-radius: 10px;
 }
 
 .levels {
@@ -879,7 +956,8 @@ body {
 
 
 .levels {
-  background-color: lightgrey;
+  color: black;
+  background-color: white;
   border-radius: 4px;
   height: 40px;
   margin-top: 5px;
@@ -888,7 +966,7 @@ body {
 }
 
 .levels:hover {
-  background-color: #b3b3b3;
+  background-color: lightblue;
 }
 
 #profileLevelScores {
@@ -950,18 +1028,19 @@ body {
   text-transform: uppercase;
 }
 
+
+#profileRankMarkers {
+  font-weight: 900;
+  font-size: 40px;
+  color: lightblue;
+}
+
 #profileRank {
   font-size: 30px;
   font-weight: 900;
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 5px;
-}
-
-#profileRankMarkers {
-  font-weight: 900;
-  font-size: 30px;
-  color: blue;
 }
 
 .profileScores {
@@ -971,11 +1050,20 @@ body {
 
 
 #profileBtns {
-  margin-left: 25%;
+  margin-left: 45px;
 }
 
-#imageHolder {
-  height: 410px;
+.imageHolder {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  height: 435px;
+  background-color: black;  
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
+  border-radius: 10px;
 }
 
 .profileImageUpload {

@@ -225,7 +225,7 @@ export const selectMode = (playerMode) => {
 export const saveGame = (profileId, game) => (dispatch, getState) => {
   console.log('in the saveGame function');
   var level = 0;
-  if (game.difficulty === 'super beginner') {
+  if (game.difficulty === 'super_beginner') {
     level = 1;
   } else if (game.difficulty === 'beginner') {
     level = 2;
@@ -239,7 +239,7 @@ export const saveGame = (profileId, game) => (dispatch, getState) => {
 
   console.log('game when end---', game);
   var score = game.scoreP1 || game.score;
-  console.log('GAME SET', profileId, game.song, score, level);
+  console.log('GAME SET ----->', profileId, game.song, score, level);
 
   axios.post('/api/games', {profileId: profileId, song: game.song, score: score, difficulty: level})
   .then( (result) => {

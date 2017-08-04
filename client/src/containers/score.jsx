@@ -24,6 +24,11 @@ class Score extends React.Component {
               <h3>Logout</h3>
             </div>
           </a>
+          <a id="logoutBtn" href='/profile'>
+            <div className="logoutChoiceBtn">
+              <h3>Profile</h3>
+            </div>
+          </a>
         </div>
       </div>
     );
