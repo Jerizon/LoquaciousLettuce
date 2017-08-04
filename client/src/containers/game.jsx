@@ -325,8 +325,8 @@
            ctx.fillStyle = 'black';
            ctx.fillRect(5, 5, 400, 600);
            ctx.fillStyle = 'white';
-           ctx.fillText(' FINAL SCORE: ' + context.state.score, 20, 50);
            ctx.font = '20px Iceland';
+           ctx.fillText(' FINAL SCORE: ' + context.state.score, 20, 50);
            ctx.fillText(' THANKS FOR PLAYING ', 30, 150);
            ctx.fillText(' The Lucky Lemons Dev Group ', 40, 350);
          }
