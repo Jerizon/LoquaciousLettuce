@@ -1,7 +1,14 @@
 {
   "knex": {
     "client": "postgresql",
-    "connection": "postgres://ffdpjcizotjwvj:2c654b3381c92556d5c088f5df3f0b8854129b7ae50857b4950ca45045523733@ec2-107-20-188-239.compute-1.amazonaws.com:5432/d6a5vchpgqakde",
+    "connection": {
+      "database": "thesis_devel",
+      "user": "postgres",
+      "password": "postgres", 
+      "host": "localhost",
+      "port": 5432,
+      "charset" : "utf8"
+    },
     "pool": {
       "min": 1,
       "max": 2
@@ -18,17 +25,17 @@
     "Google": {
       "clientID": "875758781661-fpgr00ou110vql6hq2l93lrql56ge17d.apps.googleusercontent.com",
       "clientSecret": "6aSlM3IeJNk4pgbRcaNTwqSS",
-      "callbackURL": "https://tessell8.herokuapp.com/auth/google/callback"
+      "callbackURL": "http://localhost:3000/auth/google/callback"
     },
     "Facebook": {
       "clientID": "1425144054236988",
       "clientSecret": "e6fbf2fea426f2a102d95800bc3f8d8f",
-      "callbackURL": "https://tessell8.herokuapp.com/auth/facebook/callback"
+      "callbackURL": "http://localhost:3000/auth/facebook/callback"
     },
     "Spotify": {
       "clientID": "11720c2bf44e4eb2891f29bc59d94a29",
       "clientSecret": "26c54b955e564174b7ab1cad61516925",
-      "callbackURL": "https://tessell8.herokuapp.com/auth/spotify/callback"
+      "callbackURL": "http://localhost:3000/auth/spotify/callback"
     },
     "Twitter": {
       "consumerKey": "FILL_ME_IN",
@@ -38,9 +45,5 @@
   },
   "redis": {
     "REDIS_URL" : "redis://h:p0742d847e9e1034e012ee151e9859cd31afdc76dee688f50f6bd4938099580f6@ec2-52-3-6-123.compute-1.amazonaws.com:22389"
-  },
-
-  "youtubeKey": {
-    "key": "AIzaSyC5yIOrzHz53f1ByTgYzP2Yn586TDDb-1Y"
   }
 }
