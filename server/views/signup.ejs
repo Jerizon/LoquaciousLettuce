@@ -1,56 +1,65 @@
 <% include head.ejs%>
+    <img src="assets/pics/logoTest.png" height = "250" width="1100" className ='logo'></img>
 
+        <div id="content" class="signupContainer">
+        
+            <h8>Signup</h8>
 
-    <div id="title" class="col-sm-4 col-sm-offset-4">Tessell<span class="fa fa-sign-in"></span> </div>
+            <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+            <% } %>
 
-    <div id="content" class="col-sm-4 col-sm-offset-4" >
+            <!-- LOGIN FORM -->
 
-        <h1></span> Signup </h1>
+            <div class='formContainerSignup'>
+                <form action="/signup" method="post">
 
-        <!-- show any messages that come back with authentication -->
-        <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-        <% } %>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="email" placeholder="Email">
+                    </div>
 
-        <!-- LOGIN FORM -->
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                    </div>
 
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="display" placeholder="Username">
+                    </div>
+    <!--    
+                    <div class="profileImageUpload">
+                        Upload Profile Image
+                        <input id="uploadImageBtn" type="file" style="" name="imageurl">
+                    </div> -->
 
-        <form action="/signup" method="post">
-
-            <div class="form-group">
-                <input type="text" class="form-control" name="email" placeholder="Email">
+                    <button type="submit" class="mainLoginBtn">Signup</button>
+                </form>
             </div>
 
-            <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Password">
+            <hr>
+
+            <div class="loginText">To access Music Search Login with Spotify!</div>
+
+
+            <div class="spotify">
+                 <a style="margin-left:15px" href="/auth/spotify"><img class = 'spotifyImage' style="width:70px" src="/assets/Spotify.png" /></a>
             </div>
 
-            <div class="form-group">
-                <input type="text" class="form-control" name="display" placeholder="Username">
+            <div class="loginFooter">
+              <p>Already have an account?
             </div>
-<!--
-            <div class="profileImageUpload">
-                Upload Profile Image
-                <input id="uploadImageBtn" type="file" style="" name="imageurl">
-            </div> -->
-
-            <button type="submit" class="signUpBtn">Signup</button>
-        </form>
-
-        <hr>
-
-        <div class="signUpText">Or signup with Spotify</div>
-
-        <div class="spotify">
-            <br />
-
-            <a style="margin-left:15px" href="/auth/spotify"><img style="width:70px" src="/assets/Spotify.png" /></a>
-        </div>
-        <hr>
-        <div class="loginFooter">
-        <p>Already have an account? <a href="/login">Login</a></p> </div>
-        <p>Or go <a href="/">home</a>.</p>
-
+            <div class='loginLastContainer'>
+                <a href="/login">
+                    <div class = 'lastLoginButton'>
+                        <h4>Login</h4>
+                    </div>
+                </a>
+                <a href="/">
+                    <div class = 'lastSignupButton'>
+                        <h4>Home</h4>
+                    </div>
+                </a>
+            </div>
     </div>
 
 <% include foot.ejs%>

@@ -4,7 +4,6 @@
     display: none;
 }
 
-
 #imageMssg {
     visibility: hidden;
     height:3px;
@@ -62,6 +61,15 @@ h7 {
   font-size: 30px;
   text-align: left;
 }
+
+h8 {
+  font-family: Iceland;
+  color: white;
+  font-size: 50px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
 html {
   cursor: url('pics/cursorBlue.png'), auto !important;
   /*background-image: url("pics/test.gif");*/
@@ -142,13 +150,83 @@ body {
 /*  height: 200px;*/
 }
 
-#content {
-  height: 50;
-  background-color: #1a1a1a;
+.loginContainer {
+  height: 550px;
+  width: 400px;
+  margin: auto;
+  background-color: black;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
 }
 
+.signupContainer {
+  height: 600px;
+  width: 400px;
+  margin: auto;
+  background-color: black;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
+}
+
+.loginLastContainer {
+  height: 50px;
+}
+
+.lastLoginButton {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  height: 60px;
+  width: 120px;
+  display: inline-block;
+  vertical-align: top;
+  background-color: black;
+  margin-left: 50px;
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.lastSignupButton {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  margin-left: 45px;
+  height: 60px;
+  width: 120px;
+  display: inline-block;
+  vertical-align: top;
+  background-color: black;
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.lastLoginButton:hover, .lastSignupButton:hover {
+  background-color: lightblue;
+}
+.spotifyImage {
+  cursor: url('pics/cursorPink.png'), auto !important;
+}
+  
 .spotify {
-  margin-left: 35%;
+  margin-left: 145px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #highScore {
@@ -226,6 +304,9 @@ body {
 
 
 .items {
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
   border-style: double;
   border-color: white;
   border-width: 5px;
@@ -235,9 +316,6 @@ body {
   background-color: black;
   height: 80px;
   margin-bottom: 5px;
-  -moz-box-shadow: 0px 0 10px #fff;
-  -webkit-box-shadow: 0 0 10px #fff;
-  box-shadow: 0px 0px 10px #fff;
 }
 
 .items:hover {
@@ -263,13 +341,11 @@ body {
   border-radius: 2px;
 }
 
-.loginText, .signUpText {
-  margin-left: 109px;
-  color: lightgrey;
-}
-
 .loginFooter {
-  color: lightgrey;
+  font-family: Iceland;
+  font-size: 20px;
+  color: white;
+  text-align: center;
 }
 
 .loginBtn, .signUpBtn {
@@ -290,6 +366,20 @@ body {
 
 .playerMode {
   margin-top: 150px;
+}
+
+.formContainer {
+  margin:auto;
+  width: 380px;
+  height: 200px;
+  padding-top: 10px;
+}
+
+.formContainerSignup {
+  margin:auto;
+  width: 380px;
+  height: 250px;
+  padding-top: 10px;
 }
 
 .hiscoreContainer {
@@ -557,13 +647,13 @@ body {
   float: right; 
 
   background-color: black;
+  width: 450px;
+  height: 100px;
+  display: inline-block;
   border-style: double;
   border-color: white;
   border-width: 5px;
   border-radius: 10px;
-  width: 450px;
-  height: 100px;
-  display: inline-block;
   -moz-box-shadow: 0px 0 50px #fff;
   -webkit-box-shadow: 0 0 50px #fff;
   box-shadow: 0px 0px 50px #fff;
@@ -638,6 +728,41 @@ body {
 .levelChangeDiv:hover , .searchTab:hover, .libraryTab:hover{
   background-image: url('pics/waves.gif');
 
+}
+.loginText {
+  text-align: center;
+  font-family: Iceland;
+  font-size: 22px;
+  color: white;
+}
+
+.form-control {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  font-family: Iceland;
+  font-size: 20px;
+  height: 50px;
+}
+
+.mainLoginBtn {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  -webkit-appearance: none;
+  -webkit-box-flex: 1;
+  width: 380px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  font-family: Iceland;
+  font-size: 30px;
+  text-align: center;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.mainLoginBtn:hover {
+  background-color: lightblue;
 }
 
 .singlePlayerBox {

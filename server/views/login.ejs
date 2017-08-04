@@ -1,43 +1,50 @@
 <% include head.ejs%>
     <img src="assets/pics/logoTest.png" height = "250" width="1100" className ='logo'></img>
 
-        <div id="content" class="col-sm-4 col-sm-offset-4">
+        <div id="content" class="loginContainer">
 
-            <h1>Login</h1>
+            <h8>Login</h8>
 
             <% if (message.length) { %>
             <div class="alert alert-danger"><%= message %></div>
             <% } %>
 
             <!-- LOGIN FORM -->
-            <form action="/login" method="post">
-
-                <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Email">
-                </div>
-
-                <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="Password">
-                </div>
-
-                <button type="submit" class="loginBtn">Login</button>
-            </form>
+            <div class='formContainer'>
+                <form action="/login" method="post" class='formTop'>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="mainLoginBtn">Login</button>
+                </form>
+            </div>
 
             <hr>
 
-            <div class="loginText">Or login with Spotify </div>
+            <div class="loginText">To access Music Search Login with Spotify!</div>
 
             <div class="spotify">
-                <br/>
-
-                 <a style="margin-left:15px" href="/auth/spotify"><img style="width:70px" src="/assets/Spotify.png" /></a>
+                 <a style="margin-left:15px" href="/auth/spotify"><img class = 'spotifyImage' style="width:70px" src="/assets/Spotify.png" /></a>
             </div>
-            <hr>
 
             <div class="loginFooter">
-              <p>Need to sign up for an account? <a href="/signup">Signup</a></p> </div>
-            <p><a href="/">home</a></p>
-
+              <p>Need to sign up for an account? 
+            </div>
+            <div class='loginLastContainer'>
+                <a href="/signup">
+                    <div class = 'lastLoginButton'>
+                        <h4>Signup</h4>
+                    </div>
+                </a>
+                <a href="/">
+                    <div class = 'lastSignupButton'>
+                        <h4>Home</h4>
+                    </div>
+                </a>
+            </div>
         </div>
 
 
