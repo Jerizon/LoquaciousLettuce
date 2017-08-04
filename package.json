@@ -2,9 +2,9 @@
   "name": "course.thesis",
   "version": "1.0.0",
   "scripts": {
-    "start": "PGSSLMODE=require nodemon server",
+    "start": "NODE_ENV=production PGSSLMODE=require nodemon server",
     "test": "NODE_ENV=test grunt test",
-    "build": "PGSSLMODE=require webpack --watch",
+    "build": "NODE_ENV=production PGSSLMODE=require webpack --watch",
     "heroku-postbuild": "webpack -p"
   },
   "author": "Hack Reactor",

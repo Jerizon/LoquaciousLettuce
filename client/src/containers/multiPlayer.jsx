@@ -482,7 +482,7 @@ class Multiplayer extends React.Component {
 
       audio.play();
       var drawLoop = setInterval(()=> {
-        if (context.state.gifFrame < 150) {
+        if (context.state.gifFrame < 149) {
           context.setState({gifFrame: this.state.gifFrame + 1});
         } else {
           context.setState({gifFrame: 1});
