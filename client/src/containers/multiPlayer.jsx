@@ -85,17 +85,28 @@ class Multiplayer extends React.Component {
     this.setState({attemptPressesP1: this.state.attemptPressesP1 - 1});
   }
 
-  startSong() {
+  startGlow() {
+    var state = document.getElementById('canvas');
+    state.className = 'multiCanvasBorderStart';
+  }
+
+  setGame() {
     var audio = ReactDOM.findDOMNode(this.refs.audio);
-    this.setState({game: true});
     if (this.state.game === true) {
       if (this.state.ongoing === false) {
         this.updateCanvas();
-        // setTimeout(function() {
-          // }, (475 / (4 * (1000 / 30))) * 1000);
+        this.startGlow();
         this.setState({ongoing: true});
       }
     }
+  }
+
+  startSong() {
+    this.setState({
+      game: true
+    },
+    this.setGame
+    );
   }
 
   updateCanvas() {
@@ -172,7 +183,6 @@ class Multiplayer extends React.Component {
 
       var allRowsP1 = {
         rows: [],
-
         flashDots: function() {
           if (this.rows[0]) {
             if (this.rows[0].balls) {
@@ -740,10 +750,18 @@ class Multiplayer extends React.Component {
     } else {
       var songBlob = `assets/music/${this.state.song}`;
     }
+
+    var start = function() {
+      console.log('click');
+      startSong();
+      if (!!window.background) {
+        window.background.pause();
+      }
+    };
     return (
       <div className= 'multiplayer text-center'>
         <div>
-          <canvas ref="canvas" width={1000} height={625}/>
+          <canvas ref="canvas" id='canvas' width={1000} height={625}/>
         </div>
               <ReactAudioPlayer
                 src={`${songBlob}`}
@@ -752,15 +770,18 @@ class Multiplayer extends React.Component {
                 ref="audio"
                 onEnded={function() { boundEnd(); } }
               />
-              {
-                this.state.ongoing === false &&
-                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); if (!!window.background ) { window.background.pause(); } } }> Start Song </Button>
-              }
-              {
-                this.state.end === true &&
-                <Button><Link to='/score'>Score</Link></Button>
-              }
-
+                {
+                  this.state.ongoing === false &&
+                  <div className="startChoiceBtn" onClick={start}>
+                   <h3>Start Song</h3>
+                  </div>
+                }
+                {
+                  this.state.end === true &&
+                  <Link to='/score'><Button className="startChoiceBtn" >
+                    <h3>Highscore</h3>
+                  </Button></Link>
+                }
       </div>
     );
   }
