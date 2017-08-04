@@ -9,7 +9,7 @@ exports.up = function (knex, Promise) {
       table.string('username', 100).nullable();
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
-      table.string('imageurl', 100).nullable();
+      table.string('imageurl', 200).nullable();
       table.string('accessToken', 200).nullable();
       table.string('refreshToken', 200).nullable();
       table.timestamps(true, true);

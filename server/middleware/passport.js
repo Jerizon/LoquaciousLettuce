@@ -171,6 +171,7 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done, accessToken, refreshT
         profileInfo = {
           username: oauthProfile.emails[0].value,
           email: oauthProfile.emails[0].value,
+          imageurl: 'https://vignette4.wikia.nocookie.net/animaljam/images/8/8d/SPACE_LLAMA.gif/revision/latest/scale-to-width-down/464?cb=20140616215901',
           accessToken: accessToken,
           refreshToken: refreshToken
         };
