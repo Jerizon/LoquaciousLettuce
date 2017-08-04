@@ -1,8 +1,9 @@
 const express = require('express');
 const middleware = require('../middleware');
+const models = require('../../db/models');
 //const models = require('../db/models');
 //const ProfileController = require('./controllers').Profiles;
-//const GameController = require('./controllers').Games;
+const GameController = require('../controllers').Games;
 
 const router = express.Router();
 
@@ -34,20 +35,90 @@ router.route('/signup')
 
 router.route('/profile')
 
-// query db for all user games
-//get the user id first then all the games of user
-  //.get(ProfileController.getOne)
-
   .get(middleware.auth.verify, (req, res) => {
-    res.render('profile.ejs', {
-      user: req.user // get the user out of session and pass to template
-      //stats
-      //games:
-      //
-      //
-      //
+    console.log('user id ----->', req.user.id)
 
-    });
+      models.Game.where({ profile_id: req.user.id })
+      .fetchAll()
+      .then( (games) => {
+        if (!games) {
+          throw games;
+        }
+        var mods = games.models;
+        var games = mods.map( (game) => {
+          return {difficulty: game.attributes.difficulty, score: game.attributes.score};
+        });
+        var diffs = mods.map( (game) => {
+          return game.attributes.difficulty;
+        });
+        console.log('diffs---->', diffs);
+
+        console.log('games----->', games);
+        var rank = diffs.reduce( (a, c) => {
+          return a + c;
+        }, 0);
+
+        rankNum = Math.floor(rank/diffs.length);
+        var rank;
+
+        if (rankNum === 1) {
+          rank = 'Super Beginner';
+        } else if (rankNum === 2) {
+          rank = 'Beginner';
+        } else if (rankNum === 3) {
+          rank = 'Intermediate';
+        } else if (rankNum === 4) {
+          rank = 'Advanced';
+        } else if (rankNum === 5) {
+          rank = 'Rock Star!';
+        }
+
+        var rankObj = {rankNum: rankNum, rank: rank};
+
+        var stars = {};
+        for (var i = 0; i < games.length; i++) {
+          if (stars.hasOwnProperty(games[i].difficulty)) {
+            stars[games[i].difficulty]++;
+          } else {
+            stars[games[i].difficulty] = 1;
+          }
+        }
+
+        var scoresMean = [];
+        for (var j = 1; j < 6; j++) {
+          var sum = 0;
+          var count = 0;
+          for (var k = 0; k < games.length; k++) {
+            if (games[k].difficulty === j) {
+              sum+=games[k].score;
+              count++;
+            }
+          }
+          scoresMean.push(Math.floor(sum/count));
+        }
+        scoresMean = scoresMean.map( (score) => {
+          if (isNaN(score)) {
+            return 0;
+          } else {
+            return score;
+          }
+        })
+
+        var stats = {stars: stars, scoresMean: scoresMean, rankObj: rankObj};
+        console.log('here is access to stats KEVIIIIINNNNNNNNNNNN----------------->', stats);
+
+        res.render('profile.ejs', {
+          user: req.user,
+          stats: stats
+        });
+
+      })
+      .error(err => {
+        res.status(500).send(err);
+      })
+      .catch(() => {
+        res.sendStatus(404);
+      });
   });
 
 router.route('/logout')

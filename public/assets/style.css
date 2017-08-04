@@ -44,14 +44,24 @@ h4 {
   font-size: 35px;
   text-align: center;
 }
-
 h5 {
   font-family: Iceland;
   color: white;
   font-size: 30px;
   text-align: center;
 }
-
+h6{
+  font-family: Iceland;
+  color: white;
+  font-size: 30px;
+  text-align: right;
+}
+h7 {
+  font-family: Iceland;
+  color: white;
+  font-size: 30px;
+  text-align: left;
+}
 html {
   cursor: url('pics/cursorBlue.png'), auto !important;
   /*background-image: url("pics/test.gif");*/
@@ -141,6 +151,7 @@ body {
 }
 
 #highScore {
+  font-family: Iceland;
   font-size: 50px;
   color: white;
   text-align: center;
@@ -169,36 +180,84 @@ body {
   font-size: 40px;
   font-weight: 900;
   float: left;
-  margin-left: 70px;
+  margin-left: 60px;
+}
+
+.scoreIndexContainer {
+  height: 70px;
+  width: 40px;
+  display: inline-block;
+  margin-top: 3px;
+}
+
+.scoreImageContainer {
+  height: 70px;
+  width: 130px;
+  display: inline-block;
+}
+
+.scoreDisplayContainer {
+  height: 70px;
+  width: 300px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10px;
+}
+
+.scoreScoreContainer {
+  height: 70px;
+  width: 410px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 5px;
+  margin-right: 10px;
 }
 
 #scoresList {
+  font-family: Iceland;
   background-color: lightgrey;
+  height: 70px;
+  width: 100px;
+  display: inline-block;
+  vertical-align: top;
 }
 
-#items {
-  border-radius: 5px;
-  border-style: solid;
+.items {
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
   font-size: 25px;
-  font-weight: 900;
-  font-family: 'arial';
-  color: black;
-  background-color: lightgrey;
-  height: 52px;
+  font-family: Iceland;
+  background-color: black;
+  height: 80px;
+  margin-bottom: 5px;
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
 }
 
-#items:hover {
-  color: #0040ff;
+.items:hover {
+  background-color: lightblue;
 }
+
 
 #score {
+  font-family: Iceland;
   text-align: right;
   margin-right: 25px;
   font-size: 25px;
 }
 
-#userImage {
-  margin-right: 25px;
+.userImage {
+  height: 59px;
+  width: 80px;
+  margin-bottom: 3px;
+  margin-left: 25px;
+  border-style: solid;
+  border-color: white;
+  border-width: 2px;
+  border-radius: 2px;
 }
 
 .loginText, .signUpText {
@@ -228,6 +287,63 @@ body {
 
 .playerMode {
   margin-top: 150px;
+}
+
+.hiscoreContainer {
+  margin: auto;
+  height: 600px;
+  width: 900px;
+  overflow: scroll;
+}
+
+.endChoiceBtn {
+  height: 100px;
+  width: 300px;
+  background-color: black;
+  display: inline-block;
+  vertical-align: top;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
+} 
+
+.endChoiceBtn:hover {
+  background-color: lightblue;
+}
+.logoutChoiceBtn {
+  height: 100px;
+  width: 300px;
+  background-color: black;
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
+}
+
+.logoutChoiceBtn:hover {
+  background-color: lightblue;
+}
+.endingContainer {
+  margin: auto;
+  height: 100px;
+  width: 900px;
+}
+
+.scoreContainer {
+  margin: auto;
+  height: 600px;
+  width: 900px;
+  overflow: scroll;
 }
 
 .levelChoiceBtn {
@@ -362,7 +478,7 @@ body {
   text-align: center;
   width: 200px;
   height: 50px;
-  padding-top: 3px;  
+  padding-top: 3px;
 }
 
 .spotifySearchTitle {
@@ -552,7 +668,7 @@ body {
 }
 
 .levelChoiceBtn:hover {
-  background-color: #4d94ff;
+  background-color: lightblue;
 }
 
 
@@ -610,9 +726,14 @@ body {
   height: 160px;
 }
 
+#lvls {
+/*  font-weight: 700;*/
+}
+
 #scr {
-  margin-top: 20px;
   height: 160px;
+/*  font-weight: 800;
+  font-size: 20px;*/
 }
 
 

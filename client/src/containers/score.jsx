@@ -8,16 +8,23 @@ import {Button} from 'react-bootstrap';
 
 class Score extends React.Component {
   render() {
-    console.log(this.props.topTen)
+    console.log(this.props.topTen);
     return (
-
       <div className = 'scorePage'>
-      <div id="title">TESSELL8</div>
-        <div id="highScore">HIGH SCORE</div>
-        <Link to='/'><Button className="levelChoiceBtn" >PLAY AGAIN!</Button></Link>
-        <Button id="logoutBtn" href="/logout" className="levelChoiceBtn" >Logout</Button>
-        <br></br>
+        <img src="assets/pics/logoTest.png" height = "250" width="1100" className ='logo'></img>
+        <div className='hiscoreContainer'>
           <ScoreList />
+        </div>
+        <div className='endingContainer'>
+          <Link to='/'><Button className="endChoiceBtn" >
+            <h3>Play Again!</h3>
+          </Button></Link>
+          <a id="logoutBtn" href='/logout'>
+            <div className="logoutChoiceBtn">
+              <h3>Logout</h3>
+            </div>
+          </a>
+        </div>
       </div>
     );
   }

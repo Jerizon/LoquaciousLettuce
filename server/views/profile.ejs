@@ -65,34 +65,34 @@
             <div id="profileDisplayName"> <%= user.display %>
 
               <span id="profileRank">RANK:  </span>
-              <span id="profileRankMarkers">Rockstar &#9672 &#9672 &#9672 &#9672 &#9672</span></div>
+              <span id="profileRankMarkers"> <%= stats.rankObj.rank %> &#9672 &#9672 &#9672 &#9672 &#9672</span></div>
               <span id="profLevelScore">level
                 <span id="profTopScore">top score</span>
               </span>
 
             <div id="stats1">
-
+<!-- This is the object that you have access to  stats = {stars: stars, scoresMean: scoresMean, rank: rank}   just use -->
 
                  <div id="profileLevelScores" >
                   <div class="levels">
                     Super Beginner: &#9733 &#9733 &#9733 &#9733 &#9733 &#9733
-                    <span class="profileScores">312323</span>
+                    <span class="profileScores"> <%= stats.scoresMean[0] %> </span>
                   </div>
                   <div class="levels">
                     Beginner: &#9733 &#9733 &#9733
-                    <span class="profileScores"> 212 </span>
+                    <span class="profileScores"> <%= stats.scoresMean[1] %> </span>
                   </div>
                   <div class="levels">
                     Intermediate: &#9733
-                    <span class="profileScores"> 766745 </span>
+                    <span class="profileScores"> <%= stats.scoresMean[2] %> </span>
                   </div>
                   <div class="levels">
                     Advanced: &#9733 &#9733 &#9733
-                    <span class="profileScores"> 99900 </span>
+                    <span class="profileScores"> <%= stats.scoresMean[3] %> </span>
                   </div>
                   <div class="levels">
                     Rockstar: &#9733 &#9733 &#9733 &#9733 &#9733 &#9733
-                    <span class="profileScores"> 240000000 </span>
+                    <span class="profileScores"> <%= stats.scoresMean[4] %> </span>
                   </div>
                  </div>
 
