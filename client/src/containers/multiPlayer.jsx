@@ -30,7 +30,6 @@ class Multiplayer extends React.Component {
       song: this.props.game.song,
       bpm: this.props.game.bpm,
       difficulty: this.props.game.difficulty,
-      //player: this.props.game.difficulty,
       attemptPressesP1: 0,
       attemptPressesP2: 0,
       songBlob: this.props.game.songBlob,
@@ -76,7 +75,6 @@ class Multiplayer extends React.Component {
   increaseAttemptP2() {
     this.setState({attemptPressesP2: this.state.attemptPressesP2 + 1});
   }
-
 
   decreaseAttemptP1() {
     this.setState({attemptPressesP1: this.state.attemptPressesP1 - 1});
@@ -126,11 +124,6 @@ class Multiplayer extends React.Component {
           color: color,
           keyBind: keyBind,
           draw: function() {
-            // ctx.beginPath();
-            // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-            // ctx.closePath();
-            // ctx.fillStyle = this.color;
-            // ctx.fill();
             var img = new Image();
             img.src = 'assets/dots/shiny.png';
             var heightContext = 1 + Math.floor(context.state.gifFrame / 75);
@@ -224,8 +217,6 @@ class Multiplayer extends React.Component {
           }
         }
       };
-
-
 
       var audioCtx = new AudioContext();
       var audio = ReactDOM.findDOMNode(this.refs.audio);
@@ -354,21 +345,7 @@ class Multiplayer extends React.Component {
           ctx.fillStyle = borderRight;
           ctx.fillRect(0, canvas.height - 10, canvas.width / 2, 10);
 
-
-
-
-
-
-
-
-
 //Player 2 Border
-          // var borderTop = ctx.createLinearGradient(0, 0, 0, 10);
-          // borderTop.addColorStop(0, 'white');
-          // borderTop.addColorStop(1, 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')');
-          // ctx.fillStyle = borderTop;
-          // ctx.fillRect(0, 0, canvas.width, 10);
-          //ctx.fillStyle = 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')';
 
           var borderTopP2 = ctx.createLinearGradient(0, 0, 0, 10);
           borderTopP2.addColorStop(0, 'white');
@@ -376,61 +353,19 @@ class Multiplayer extends React.Component {
           ctx.fillStyle = borderTopP2;
           ctx.fillRect(canvas.width / 2, 0, canvas.width / 2, 10);
 
-
-          //ctx.fillRect(canvas.width - 10, 0, 10, canvas.height);
-
           var borderBot = ctx.createLinearGradient(canvas.width - 10, 0, canvas.width, 0);
           borderBot.addColorStop(1, 'white');
           borderBot.addColorStop(0, 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')');
           ctx.fillStyle = borderBot;
-
           ctx.fillRect(canvas.width - 10, 0, 10, canvas.height);
-          // ctx.fillRect(canvas.width / 2, 0, canvas.width / 2, 10);
 
           var borderRight = ctx.createLinearGradient(0, canvas.height - 10, 0, canvas.height);
           borderRight.addColorStop(0, 'rgb(' + (255 - context.state.healthP2 * 2) + ',' + ( Math.floor(context.state.healthP2 * 2.5)) + ',' + (Math.floor( context.state.healthP2 * 2.5)) + ')');
           borderRight.addColorStop(1, 'white');
           ctx.fillStyle = borderRight;
           ctx.fillRect(canvas.width / 2, canvas.height - 10, canvas.width / 2, 10);
+         
           ctx.fillStyle = 'white';
-
-
-
-
-
-
-
-  /*                Player 1 Hit condition            */
-  //         if (context.state.hitP1 === true) {
-  //           if (counterP1 === 5) {
-  //             context.setState({hitP1: false});
-  //             counterP1 = 0;
-  //           } else {
-  //             ctx.fillStyle = 'blue';
-  //             ctx.fillRect(50, 572.5, 400, 10);
-  //             counterP1++;
-  //             ctx.fillStyle = 'white';
-  //           }
-  //         } else {
-  //           ctx.fillStyle = 'white';
-  //           ctx.fillRect(50, 572.5, 400, 10);
-  //         }
-
-  // /*                Player 2 Hit condition            */
-  //         if (context.state.hitP2 === true) {
-  //           if (counterP2 === 5) {
-  //             context.setState({hitP2: false});
-  //             counterP2 = 0;
-  //           } else {
-  //             ctx.fillStyle = 'blue';
-  //             ctx.fillRect(550, 575, 400, 10);
-  //             counterP2++;
-  //             ctx.fillStyle = 'white';
-  //           }
-  //         } else {
-  //           ctx.fillStyle = 'white';
-  //           ctx.fillRect(550, 572.5, 400, 10);
-  //         }
           ctx.font = '30px Iceland';
           ctx.fillStyle = 'white';
           var img = new Image();
@@ -474,9 +409,8 @@ class Multiplayer extends React.Component {
 
         } else {
 
-          console.log('----> current user',context.props.currentUser);
-           context.props.saveGame(context.props.currentUser.id, context.state);
-
+          //console.log('----> current user',context.props.currentUser);
+          context.props.saveGame(context.props.currentUser.id, context.state);
           ctx.clearRect(-50, -50, 1500, 1500);
           ctx.fillStyle = 'black';
           ctx.fillRect(0, 0, 1500, 800);
@@ -491,12 +425,14 @@ class Multiplayer extends React.Component {
       }
 
       audio.play();
+      
       var drawLoop = setInterval(()=> {
         if (context.state.gifFrame < 149) {
           context.setState({gifFrame: this.state.gifFrame + 1});
         } else {
           context.setState({gifFrame: 1});
         }
+
         draw();
         if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0 || context.state.end === true) {
           audio.pause();

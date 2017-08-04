@@ -249,13 +249,6 @@
                context.setState({hit: false});
                counter = 0;
              } else {
-
-              //  img.src = 'assets/dots/crosshairHit.png';
-              //  var frame = (context.state.gifFrame % 30) + 1;
-              // //  ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 20, 552, 50, 50);
-              // //  ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 120, 552, 50, 50);
-              // //  ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 220, 552, 50, 50);
-              // //  ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 320, 552, 50, 50);
                counter++;
              }
 
@@ -273,8 +266,6 @@
            ctx.fillText('D', 237, 586);
            ctx.drawImage(targetImg, (targetImg.width / 30) * frame, 0, targetImg.width / 30, targetImg.height, 320, 552, 50, 50);
            ctx.fillText('F', 337, 586);
-            //  ctx.fillStyle = 'white';
-            //  ctx.fillRect(0, 572.5, 400, 10);
 
 // EXCLAMATIONS!
            if (context.state.exclamation !== null) {
@@ -293,13 +284,12 @@
            }
 
 // BORDER
-           //ctx.fillStyle = 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')';
+           
            var borderTop = ctx.createLinearGradient(0, 0, 0, 10);
            borderTop.addColorStop(0, 'white');
            borderTop.addColorStop(1, 'rgb(' + (255 - context.state.health * 2) + ',' + ( Math.floor(context.state.health * 2.5)) + ',' + (Math.floor( context.state.health * 2.5)) + ')');
            ctx.fillStyle = borderTop;
            ctx.fillRect(0, 0, canvas.width, 10);
-
 
            var borderLeft = ctx.createLinearGradient(0, 0, 10, 0);
            borderLeft.addColorStop(0, 'white');
@@ -324,10 +314,9 @@
              row.drawRow();
              row.advanceRow();
            });
+
            allRows.checkDelete();
            allRows.flashDots();
-
-
 
          } else {
 
@@ -377,18 +366,6 @@
          }
        }, 1000 / 30);
 
-
-       /*
-
-      var refreshId = setInterval(function() {
-      var properID = CheckReload();
-      if (properID > 0) {
-          clearInterval(refreshId);
-        }
-      }, 10000);
-
-       */
-
        var modifier = 1;
        if (context.state.difficulty === 'super_beginner') {
          modifier = .25;
@@ -406,7 +383,6 @@
          allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
          if (context.state.health <= 0 || context.state.end === true) {
            audio.pause();
-           // saveGame(this.props.currentUser.id, context.state);
            context.setState({end: true});
            clearInterval(frameCheck);
            clearInterval(drawLoop);
@@ -414,7 +390,6 @@
            draw();
          }
        }, Math.floor(60000 / (context.state.bpm * modifier)) );
-
 
        var checkMove = () => {
          var output = allRows.rows[0].balls.map(function(ball) {
@@ -426,7 +401,6 @@
        };
 
        function ListenEvents() {
-
 
          var validMove = (keyCodes) =>{
            context.increaseAttempt();
@@ -452,6 +426,7 @@
              }
            }
          };
+          
          function listenToA() {
            keyboardJS.bind('a', function(e) {
              validMove('a');
