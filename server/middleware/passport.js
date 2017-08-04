@@ -165,10 +165,11 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done, accessToken, refreshT
     })
     .then(profile => {
       let profileInfo;
-      console.log(oauthProfile);
       console.log('this is the type', typeof(accessToken), typeof(refreshToken));
+      var email = oauthProfile.emails[0].value.substring(0, oauthProfile.emails[0].value.indexOf('@'));
       if (type === 'spotify') {
         profileInfo = {
+          display: email, 
           username: oauthProfile.emails[0].value,
           email: oauthProfile.emails[0].value,
           imageurl: 'https://vignette4.wikia.nocookie.net/animaljam/images/8/8d/SPACE_LLAMA.gif/revision/latest/scale-to-width-down/464?cb=20140616215901',
@@ -189,7 +190,6 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done, accessToken, refreshT
         //update profile with info from oauth
         return profile.save(profileInfo, { method: 'update' });
       }
-      console.log('after profileInfoSave');
       // otherwise create new profile
       return models.Profile.forge(profileInfo).save();
     })
