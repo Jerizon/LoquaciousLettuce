@@ -31,19 +31,19 @@ module.exports.getOne = (req, res) => {  // [ R ]
 
 
 module.exports.create = (req, res) => {  // [ C ]
-  console.log('bodyyyy---', req.body);
   models.Game.forge({
     profile_id: req.body.profileId,
     song_id: 1,
     score: req.body.score,
-    difficulty: req.body.difficulty,
-
+    difficulty: req.body.difficulty
   })
     .save()
     .then(result => {
-      res.send(201, result);
+      console.log('Success');
+      res.status(200).send(result);
     })
     .catch(err => {
+      console.log('This guy right here');
       res.status(500).send(err);
     });
 };

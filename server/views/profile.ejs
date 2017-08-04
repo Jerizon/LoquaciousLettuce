@@ -22,8 +22,10 @@
                    picture.onchange = function () {
                     var files = picture.files;
                     if(!!files[0]) {
+                      console.log('Hello, julia', files[0]);
                       var source = document.getElementById("profile-pic");
                       var blob = URL.createObjectURL(files[0]);
+                      console.log(blob);
                       source.src = blob;
                     }
                    }
