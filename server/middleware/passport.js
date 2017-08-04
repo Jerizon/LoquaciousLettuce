@@ -37,7 +37,7 @@ passport.use('local-signup', new LocalStrategy({
   (req, email, password, done) => {
     //
     var {display, imageurl} = req.body;
-    var imageurl = !!imageurl ? imageurl : 'https://files.slack.com/files-pri/T5B9UC4RM-F6GNVBDJ6/photo2.png';
+    var imageurl = !!imageurl ? imageurl : 'https://vignette4.wikia.nocookie.net/animaljam/images/8/8d/SPACE_LLAMA.gif/revision/latest/scale-to-width-down/464?cb=20140616215901';
     // check to see if there is any account with this email address
     return models.Profile.where({ email }).fetch()
       .then(profile => {

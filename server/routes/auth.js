@@ -36,8 +36,6 @@ router.route('/signup')
 router.route('/profile')
 
   .get(middleware.auth.verify, (req, res) => {
-    console.log('user id ----->', req.user.id)
-
       models.Game.where({ profile_id: req.user.id })
       .fetchAll()
       .then( (games) => {
@@ -51,9 +49,6 @@ router.route('/profile')
         var diffs = mods.map( (game) => {
           return game.attributes.difficulty;
         });
-        console.log('diffs---->', diffs);
-
-        console.log('games----->', games);
         var rank = diffs.reduce( (a, c) => {
           return a + c;
         }, 0);
@@ -61,7 +56,9 @@ router.route('/profile')
         rankNum = Math.floor(rank/diffs.length);
         var rank;
 
-        if (rankNum === 1) {
+        if (!rankNum) {
+          rank = 'None';
+        } else if (rankNum === 1) {
           rank = 'Super Beginner';
         } else if (rankNum === 2) {
           rank = 'Beginner';
@@ -105,7 +102,7 @@ router.route('/profile')
         })
 
         var stats = {stars: stars, scoresMean: scoresMean, rankObj: rankObj};
-        console.log('here is access to stats KEVIIIIINNNNNNNNNNNN----------------->', stats);
+        console.log('here is access to stats KEVIIIIINNNNNNNNNNNN-----------------> stats obj ', stats);
 
         res.render('profile.ejs', {
           user: req.user,

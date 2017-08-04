@@ -38,7 +38,7 @@ class ScoreList extends React.Component {
               </div>
               <div className ='scoreScoreContainer'>
                 <h6>{game.score}</h6>
-              </div>    
+              </div>
             </div>
           </div>
         </div>

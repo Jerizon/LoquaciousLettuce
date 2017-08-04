@@ -131,7 +131,6 @@ module.exports.getAllForUser = (req, res) => {  // [ R ]
     });
 };
 
-
 module.exports.getPlayerStats = (req, res) => {
   // QUERY DB TO GET THE PROFILE ID FROM THE PROFILE EMAIL
   let profile_id = 0;

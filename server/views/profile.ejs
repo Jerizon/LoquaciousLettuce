@@ -1,11 +1,11 @@
 <% include head.ejs%>
-  
+
   <img src="assets/pics/logoTest.png" height = "250" width="1100" className ='logo'></img>
 
     <div class="row">
         <!-- LOCAL INFORMATION  -->
         <div class="col-sm-4">
-            <div id ="imageHolder" class="well">
+            <div class ="imageHolder">
 
               <div class="image-upload">
                 <label for="file-input">
@@ -42,27 +42,32 @@
                   picture.onchange();
                 </script>
                 <% if (user.email) { %>
-                <p>
 <!--                     <strong>email</strong>: <%= user.email %> -->
                       <div id="profileBtns">
-                        <a href="/" class="btn btn-default btn-sm" style="background-color: #00cc66" >New Game</a>
-                        <a href="/logout" class="btn btn-default btn-sm" style="background-color: #00cc66">Logout</a>
+                        <a href="/logout" class='profileButton'>
+                          <h5>Logout</h5>
+                        </a>
                       </div>
-                </p>
+
 
                 <% } else { %>
                 <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
-
             </div>
         </div>
 
         <div class="col-sm-8">
           <div id="profileStats" class="well">
-            <div id="profileDisplayName"> <%= user.display %>
-
-              <span id="profileRank">RANK:  </span>
-              <span id="profileRankMarkers"> <%= stats.rankObj.rank %> <% for(var i = 0; i < stats.rankObj.rankNum; i++) {%> &#9672 <% } %> </span></div>
+            <div id="profileDisplayName"> 
+              <div class='toplineContainer'>
+                <div class = 'toplineDisplay'>
+                  <%= user.display %>
+                </div>
+                <div class = 'nextlineDisplay'>
+                  <span id="profileRank">RANK:  </span>
+                  <span id="profileRankMarkers"> <%= stats.rankObj.rank %> <% for(var i = 0; i < stats.rankObj.rankNum; i++) {%> &#9672 <% } %> </span></div>
+                </div>
+              </div>
               <span id="profLevelScore">level
                 <span id="profTopScore">top score</span>
               </span>
@@ -91,19 +96,15 @@
                     Rockstar: <% for(var i = 0; i < stats.stars['5']; i++) {%> &#9733 <% } %>
                     <span class="profileScores"> <%= stats.scoresMean[4] %> </span>
                   </div>
-                 </div>
-
-
-<!--                 <div class="scores"> 233 </div>
-                <div class="scores"> 10000 </div>
-                <div class="scores"> 443222 </div>
-                <div class="scores"> 32323 </div>
-                <div class="scores">4200000000</div> -->
-
+                </div>
             </div>
-
           </div>
 
+            <a href="/" class='ridofLinks'>
+              <div class = 'profileButtonGame'>
+                <h3>Play Game!</h3>
+              </div>
+            </a>
         </div>
 
 
