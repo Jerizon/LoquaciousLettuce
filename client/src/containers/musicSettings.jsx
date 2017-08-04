@@ -20,7 +20,6 @@ class MusicSettings extends React.Component {
       key: 1
     },
     this.search = '';
-    // this.youtubeSearch = '';
     this.getAudioTrackID = this.getAudioTrackID.bind(this);
     this.getToken = this.getToken.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
