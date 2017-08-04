@@ -45,16 +45,24 @@ class ScoreList extends React.Component {
       );
     });
   }
+  createStars(numberOfStars) {
+    var astrolab = [];
+    for (var i = 0; i < numberOfStars; i++) {
+      astrolab.push('★');
+    }
+    return <span>{astrolab}</span>;
+  }
 
   render () {
     // console.log('stars', this.props.showScoreModal.stats.games[0].numGamesDifficulty);
     // console.log('scores', this.props.showScoreModal.stats.games[0].topScoreDifficulty);
     //{this.props.showScoreModal.stats.games[0].numGamesDifficulty[1]}
+    var createStars = this.createStars.bind(this);
     return (
       <div>
         <div>
           <div>
-            <Modal id="modals" show={this.props.showScoreModal.visibility} onHide={ () => this.props.closeModal({visibility: false, user: {display:'julia'}, stats: {games: []}}) }>
+            <Modal id="modals" show={this.props.showScoreModal.visibility} onHide={ () => this.props.closeModal({visibility: false, user: {display: 'julia'}, stats: {games: []}}) }>
               <Modal.Header closeButton>
                 <Modal.Title id="modalTitle"> <span id="modalTitleUserName">{this.props.showScoreModal.user.display} </span>RANK: {this.props.showScoreModal.stats.games[0].playerRanking} </Modal.Title>
               </Modal.Header>
@@ -62,11 +70,11 @@ class ScoreList extends React.Component {
                 <div id="modPic" className="col-sm-4"><img src={this.props.showScoreModal.user.imageurl} height="160" width="160"/></div>
                 <div id="lvls" className="col-sm-6">
                   <div> STATS </div>
-                  Super Beginner: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[1]} <br></br>
-                  Beginner: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[2]}<br></br>
-                  Intermediate: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[3]}<br></br>
-                  Advanced: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[4]}<br></br>
-                  Rockstar: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[5]}<br></br>
+                  Super Beginner: {createStars(this.props.showScoreModal.stats.games[0].numGamesDifficulty[1])} <br></br>
+                  Beginner: {createStars(this.props.showScoreModal.stats.games[0].numGamesDifficulty[2])}<br></br>
+                  Intermediate: {createStars(this.props.showScoreModal.stats.games[0].numGamesDifficulty[3])}<br></br>
+                  Advanced: {createStars(this.props.showScoreModal.stats.games[0].numGamesDifficulty[4])}<br></br>
+                  Rockstar: {createStars(this.props.showScoreModal.stats.games[0].numGamesDifficulty[5])}<br></br>
                 </div>
 
                 <span id="scr" className="col-sm-2"> highscores: <br></br>
